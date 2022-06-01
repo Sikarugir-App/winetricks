@@ -5366,22 +5366,6 @@ winetricks_init()
         W_COUNTRY="$(cat "${WINETRICKS_CONFIG}"/country)"
     fi
 
-    # Pin a task to a single cpu. Helps prevent race conditions.
-    #
-    # Linux/FreeBSD: supported
-    # OSX: doesn't have a utility for this
-    # Solaris: no access, PR welcome
-
-    if [ -x "$(command -v taskset 2>/dev/null)" ]; then
-        W_TASKSET="taskset -c 0"
-    elif [ -x "$(command -v cpuset 2>/dev/null)" ]; then
-        W_TASKSET="cpuset -l 0"
-    else
-        # not using w_warn so we don't annoy everyone running via GUI, but still printed to terminal:
-        echo "warning: taskset/cpuset not available on your platform!"
-        W_TASKSET=""
-    fi
-
     # Whether to automate installs (0=no, 1=yes)
     winetricks_set_unattended "${W_OPT_UNATTENDED:-0}"
 
@@ -13602,12 +13586,7 @@ load_windowscodecs()
     # https://bugs.winehq.org/show_bug.cgi?id=23232
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
 
-    if w_workaround_wine_bug 32859 "Working around possibly broken libX11"; then
-        # shellcheck disable=SC2086
-        w_try ${W_TASKSET} "${WINE}" "${EXE}" /passive
-    else
-        w_try "${WINE}" "${EXE}" /passive
-    fi
+    w_try "${WINE}" "${EXE}" /passive
 
     w_restore_winver
 }
@@ -15888,10 +15867,6 @@ load_kindle()
     w_download https://web.archive.org/web/20160817182927/https://s3.amazonaws.com/kindleforpc/44025/KindleForPC-installer-1.16.44025.exe 2655fa8be7b8f4659276c46ef9f3fede847135bf6e5c1de136c9de7af6cac1e2
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
     w_try "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+ /S}
-
-    if w_workaround_wine_bug 35041 && [ -n "${W_TASKSET}" ] ; then
-        w_warn "You may need to run with ${W_TASKSET} to avoid a libX11 crash."
-    fi
 
     if w_workaround_wine_bug 29045; then
         w_call corefonts
