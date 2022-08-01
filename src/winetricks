@@ -878,6 +878,17 @@ w_try_mkdir()
     fi
 }
 
+w_try_readlinkf(){
+    if [ -x "$(command -v greadlink 2>/dev/null)" ]; then
+        greadlink "$@"
+    # Darwin shipped readlink doesn't support -f
+    elif [ "$(uname -s)" = "Darwin" ]; then
+        perl -MCwd -e 'print Cwd::abs_path shift' "$@"
+    else
+        readlink -f "$@"
+    fi
+}
+
 w_try_msiexec64()
 {
     if test "${W_ARCH}" != "win64"; then
