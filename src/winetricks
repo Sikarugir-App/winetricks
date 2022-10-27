@@ -9088,7 +9088,7 @@ helper_faudio()
         for dll in "${faudio_version}/x32/"*.dll; do
             shortdll="$(basename "${dll}" .dll)"
             w_try_cp_dll "${dll}" "${W_SYSTEM32_DLLS}"
-            w_override_dlls native "${shortdll}"
+            w_override_dlls native,builtin "${shortdll}"
         done
     fi
 
@@ -9097,7 +9097,7 @@ helper_faudio()
             # Note: 'libgcc_s_sjlj-1.dll' is not included in the 64-bit build
             shortdll="$(basename "${dll}" .dll)"
             w_try_cp_dll "${dll}" "${W_SYSTEM64_DLLS}"
-            w_override_dlls native "${shortdll}"
+            w_override_dlls native,builtin "${shortdll}"
         done
     fi
 }
