@@ -1,3 +1,4 @@
 .gitignore
 *.swp
 output/
+*.DS_Store
