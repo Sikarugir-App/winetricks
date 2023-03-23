@@ -15718,7 +15718,7 @@ w_metadata origin apps \
 helper_origin_dl()
 {
     # Skipping checksum as this changes too often
-    w_download_to origin https://origin-a.akamaihd.net/Origin-Client-Download/origin/live/OriginSetup.exe
+    w_download_to origin https://taskinoz.com/downloads/OriginSetup-10.5.119.52718.exe ed6ee5174f697744ac7c5783ff9021da603bbac42ae9836cd468d432cadc9779 OriginSetup.exe
 }
 
 load_origin()
@@ -15728,14 +15728,11 @@ load_origin()
         w_die "${W_PACKAGE} requires wine version 6.0 (or newer)"
     fi
 
-    if [ "${WINETRICKS_FORCE}" != 1 ] && w_workaround_wine_bug 44691 "Installer fails under wine, manually unpacking it instead" 6.7,; then
-        w_call originupdater
-        w_warn "${W_PACKAGE} might fail, to update use the originupdate verb"
-    else
-        helper_origin_dl
-        w_try_cd "${W_CACHE}/${W_PACKAGE}"
-        w_try "${WINE}" "${file1}" /NoLaunch ${W_OPT_UNATTENDED:+/SILENT}
-    fi
+    helper_origin_dl
+
+    w_try_7z "${W_CACHE}"/origin "${W_CACHE}"/origin/OriginSetup.exe update
+    w_try_7z "${W_PROGRAMS_X86_UNIX}"/Origin "${W_CACHE}"/origin/update/OriginUpdate_*_*_*_*.zip -aoa
+    w_try rm -rf "${W_CACHE}"/origin/update
 
     if w_workaround_wine_bug 32342 "QtWebEngineProcess.exe crashes when updating or launching Origin (missing fonts)"; then
         w_call corefonts
@@ -15773,14 +15770,26 @@ load_origin()
         w_override_app_dlls origin.exe disabled gameux
     fi
 
-    # Origin requirements
+    # Origin requirements (vcrun2010/vcrun2013/vcrun2015)
     w_call vcrun2010
     w_call vcrun2013
-    w_call vcrun2019
+    w_call vcrun2022
 
     if w_wine_version_in ,6.3 ; then
         w_call d3dcompiler_47
     fi
+
+    w_try_mkdir "${W_DRIVE_C}/ProgramData/Origin"
+
+    cat > "${W_DRIVE_C}/ProgramData/Origin/local.xml" <<_EOF_
+<?xml version="1.0"?>
+<Settings>
+  <Setting value="true" key="MigrationDisabled" type="1"/>
+  <Setting key="UpdateURL" value="http://joe.rilla" type="10"/>
+  <Setting key="AutoPatchGlobal" value="false" type="1"/>
+  <Setting key="AutoUpdate" value="false" type="1"/>
+</Settings>
+_EOF_
 
     w_warn "Origin In-game overlay must be disabled"
 }
@@ -15801,15 +15810,25 @@ load_originupdater()
         w_die "${W_PACKAGE} requires wine version 6.0 (or newer)"
     fi
 
-    # Remove cached installer as the checksum changes too often that is even more critical for the updater function
-    w_try rm -f "${W_CACHE}/origin/OriginSetup.exe"
-
     helper_origin_dl
 
+    w_try rm -rf "${W_DRIVE_C}/ProgramData/Origin"
     w_try rm -rf "${W_PROGRAMS_X86_UNIX}"/Origin
     w_try_7z "${W_CACHE}"/origin "${W_CACHE}"/origin/OriginSetup.exe update
     w_try_7z "${W_PROGRAMS_X86_UNIX}"/Origin "${W_CACHE}"/origin/update/OriginUpdate_*_*_*_*.zip -aoa
     w_try rm -rf "${W_CACHE}"/origin/update
+    w_try_mkdir "${W_DRIVE_C}/ProgramData/Origin"
+
+    cat > "${W_DRIVE_C}/ProgramData/Origin/local.xml" <<_EOF_
+<?xml version="1.0"?>
+<Settings>
+  <Setting value="true" key="MigrationDisabled" type="1"/>
+  <Setting key="UpdateURL" value="http://joe.rilla" type="10"/>
+  <Setting key="AutoPatchGlobal" value="false" type="1"/>
+  <Setting key="AutoUpdate" value="false" type="1"/>
+</Settings>
+_EOF_
+
 }
 
 #----------------------------------------------------------------
