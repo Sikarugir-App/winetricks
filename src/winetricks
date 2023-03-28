@@ -4557,7 +4557,7 @@ winetricks_set_wineprefix()
         windows_cmd)
             W_DRIVE_C="/cygdrive/c" ;;
         *)
-            W_DRIVE_C="${WINEPREFIX}/dosdevices/c:" ;;
+            W_DRIVE_C="${WINEPREFIX}/drive_c" ;;
     esac
     W_WINDIR_UNIX="${W_DRIVE_C}/windows"
 
