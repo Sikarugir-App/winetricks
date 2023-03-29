@@ -7191,7 +7191,7 @@ load_dxvk1071()
         w_package_unsupported_win32
     fi
 
-    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.7.1/dxvk-v1.7.1.tar.gz d1c9bb8592cc1a6b9a2633a6f662e63c098066412163a5e5c3b53ca404df2f77
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.7.1/dxvk-v1.7.1.tar.gz
 
     w_try_cd "${W_TMP}"
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.1.tar.gz"
@@ -7238,7 +7238,7 @@ load_dxvk1072()
         w_package_unsupported_win32
     fi
 
-    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.7.2/dxvk-v1.7.2.tar.gz d1c9bb8592cc1a6b9a2633a6f662e63c098066412163a5e5c3b53ca404df2f77
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.7.2/dxvk-v1.7.2.tar.gz
 
     w_try_cd "${W_TMP}"
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.2.tar.gz"
@@ -7285,7 +7285,7 @@ load_dxvk1073()
         w_package_unsupported_win32
     fi
 
-    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.7.3/dxvk-v1.7.3.tar.gz d1c9bb8592cc1a6b9a2633a6f662e63c098066412163a5e5c3b53ca404df2f77
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.7.3/dxvk-v1.7.3.tar.gz
 
     w_try_cd "${W_TMP}"
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.3.tar.gz"
@@ -7332,7 +7332,7 @@ load_dxvk1080()
         w_package_unsupported_win32
     fi
 
-    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.8/dxvk-v1.8.tar.gz 42c390df844e39fbd644e73fcb7193e2ebcc12371914620c5272dccff816348a
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.8/dxvk-v1.8.tar.gz
 
     w_try_cd "${W_TMP}"
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.8.tar.gz"
@@ -7379,7 +7379,7 @@ load_dxvk1081()
         w_package_unsupported_win32
     fi
 
-    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.8.1/dxvk-v1.8.1.tar.gz fb635f58f36d64f1fe4f25bd1aff736edc6edbe931f158b33c2964b0c54f21c8
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.8.1/dxvk-v1.8.1.tar.gz
 
     w_try_cd "${W_TMP}"
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.8.1.tar.gz"
