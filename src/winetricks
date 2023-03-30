@@ -7828,15 +7828,13 @@ load_dxvk1103()
         d3d10core
 }
 
+# Don't check installed files as this verb will get updated
 w_metadata dxvk_master dlls \
     title="Vulkan-based D3D10/D3D11 implementation for Wine" \
     publisher="Philip Rebohle / CodeWeavers" \
     year="2021" \
     media="download" \
-    file1="../dxvk/dxvk-macOS-async-v1.10.3-47-gb144ae28.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    file1="../dxvk/dxvk-macOS-async-v1.10.3-20230329.tar.gz" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk_master()
@@ -7851,23 +7849,23 @@ load_dxvk_master()
         w_package_unsupported_win32
     fi
 
-    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.10.3-47-gb144ae28/dxvk-macOS-async-v1.10.3-47-gb144ae28.tar.gz c4113612fec5abaa533c65d44284b68ecc7a59e9b4fc12af89711b58ac836413
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.10.3-20230329/dxvk-macOS-async-v1.10.3-20230329.tar.gz
 
     w_try_cd "${W_TMP}"
-    w_try tar -xf "${W_CACHE}/dxvk/dxvk-macOS-async-v1.10.3-47-gb144ae28.tar.gz"
+    w_try tar -xf "${W_CACHE}/dxvk/dxvk-macOS-async-v1.10.3-20230329.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-47-gb144ae28/x32/dxgi.dll      "${W_SYSTEM32_DLLS}"/dxgi.dll
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-47-gb144ae28/x32/d3d11.dll     "${W_SYSTEM32_DLLS}"/d3d11.dll
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-47-gb144ae28/x32/d3d10core.dll "${W_SYSTEM32_DLLS}"/d3d10core.dll
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230329/x32/dxgi.dll      "${W_SYSTEM32_DLLS}"/dxgi.dll
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230329/x32/d3d11.dll     "${W_SYSTEM32_DLLS}"/d3d11.dll
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230329/x32/d3d10core.dll "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
         w_warn "Skipping 32bit dlls"
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-47-gb144ae28/x64/dxgi.dll      "${W_SYSTEM64_DLLS}"/dxgi.dll
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-47-gb144ae28/x64/d3d11.dll     "${W_SYSTEM64_DLLS}"/d3d11.dll
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-47-gb144ae28/x64/d3d10core.dll "${W_SYSTEM64_DLLS}"/d3d10core.dll
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230329/x64/dxgi.dll      "${W_SYSTEM64_DLLS}"/dxgi.dll
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230329/x64/d3d11.dll     "${W_SYSTEM64_DLLS}"/d3d11.dll
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230329/x64/d3d10core.dll "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
