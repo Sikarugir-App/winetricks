@@ -15718,6 +15718,17 @@ load_steam()
 
 #----------------------------------------------------------------
 
+w_metadata uplay dlls \
+    title="Uplay" \
+    publisher="Ubisoft" \
+    year="2020" \
+    media="download"
+
+load_uplay()
+{
+    w_call ubisoftconnect
+}
+
 w_metadata ubisoftconnect apps \
     title="Ubisoft Connect" \
     publisher="Ubisoft" \
