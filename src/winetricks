@@ -12984,6 +12984,8 @@ load_vcrun2022()
             w_try_ms_installer "${WINE}" vc_redist.x64.exe ${W_OPT_UNATTENDED:+/q}
             ;;
     esac
+
+    w_call ucrtbase2019
 }
 
 #----------------------------------------------------------------
