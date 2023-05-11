@@ -13415,6 +13415,40 @@ load_windowscodecs()
 
 #----------------------------------------------------------------
 
+w_metadata winevdm dlls \
+    title="16-bit Windows on 64-bit Windows" \
+    homepage="https://github.com/otya128/winevdm" \
+    publisher="otya128" \
+    year="2021" \
+    media="download" \
+    file1="otvdm-v0.9.0.zip" \
+    installed_file1="${W_SYSTEM32_DLLS_WIN}/winevdm.exe"
+
+load_winevdm()
+{
+    # Want to avoid pre WineCX22
+    if w_wine_version_in ,7.1 ; then
+        w_die "${W_PACKAGE} requires wine version 7.1 (or newer)"
+    fi
+
+    if w_wine_version_in ,7.6 ; then
+        w_package_unsupported_win32
+    fi
+
+    w_package_broken https://bugs.winehq.org/show_bug.cgi?id=49690 5.12 6.0
+
+    w_download https://github.com/otya128/winevdm/releases/download/v0.9.0/otvdm-v0.9.0.zip 842b11aed5fa81f3e1d4272e0ee7d37f1a5a8f936de825309dda672835e16fd4
+    w_try_unzip "${W_TMP}" "${W_CACHE}/${W_PACKAGE}/${file1}"
+
+    w_try mv "${W_TMP}/otvdm-v0.9.0/otvdmw.exe" "${W_SYSTEM32_DLLS}/winevdm.exe"
+    w_try mv "${W_TMP}/otvdm-v0.9.0/libwine.dll" "${W_SYSTEM32_DLLS}/libwine.dll"
+    w_try mv "${W_TMP}/otvdm-v0.9.0/WINDOWS" "${W_SYSTEM32_DLLS}/WINDOWS"
+    w_try mv "${W_TMP}/otvdm-v0.9.0/dummydll" "${W_SYSTEM32_DLLS}/dummydll"
+    w_try mv "${W_TMP}/otvdm-v0.9.0/dll" "${W_SYSTEM32_DLLS}/dll"
+}
+
+#----------------------------------------------------------------
+
 w_metadata winhttp dlls \
     title="MS Windows HTTP Services" \
     publisher="Microsoft" \
