@@ -17783,6 +17783,21 @@ load_wglgears()
 ####
 # settings->desktop
 #----------------------------------------------------------------
+
+w_metadata atiadlxx=default settings \
+    title="Enable builtin atidlxx (default)"
+w_metadata atiadlxx=disabled settings \
+    title="Disable builtin atidlxx"
+
+load_atiadlxx()
+{
+    case "$1" in
+        default) w_override_dlls builtin atiadlxx ;;
+        disabled) w_override_dlls disabled atiadlxx ;;
+    esac
+}
+
+#----------------------------------------------------------------
 # DirectInput settings
 
 w_metadata mwo=force settings \
