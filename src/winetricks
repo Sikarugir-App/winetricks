@@ -7369,9 +7369,8 @@ w_metadata dxvk1070 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.7.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1070()
@@ -7391,7 +7390,6 @@ load_dxvk1070()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7/x32/dxgi.dll         "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7/x32/d3d11.dll        "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7/x32/d3d10core.dll    "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7399,13 +7397,11 @@ load_dxvk1070()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7/x64/dxgi.dll         "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7/x64/d3d11.dll        "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7/x64/d3d10core.dll    "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7416,9 +7412,8 @@ w_metadata dxvk1071 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.7.1.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1071()
@@ -7438,7 +7433,6 @@ load_dxvk1071()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.1.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7.1/x32/dxgi.dll         "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.1/x32/d3d11.dll        "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.1/x32/d3d10core.dll    "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7446,13 +7440,11 @@ load_dxvk1071()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7.1/x64/dxgi.dll         "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.1/x64/d3d11.dll        "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.1/x64/d3d10core.dll    "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7463,9 +7455,8 @@ w_metadata dxvk1072 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.7.2.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1072()
@@ -7485,7 +7476,6 @@ load_dxvk1072()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.2.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7.2/x32/dxgi.dll         "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.2/x32/d3d11.dll        "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.2/x32/d3d10core.dll    "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7493,13 +7483,11 @@ load_dxvk1072()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7.2/x64/dxgi.dll         "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.2/x64/d3d11.dll        "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.2/x64/d3d10core.dll    "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7510,9 +7498,8 @@ w_metadata dxvk1073 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.7.3.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1073()
@@ -7532,7 +7519,6 @@ load_dxvk1073()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.7.3.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7.3/x32/dxgi.dll         "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.3/x32/d3d11.dll        "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.3/x32/d3d10core.dll    "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7540,13 +7526,11 @@ load_dxvk1073()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.7.3/x64/dxgi.dll         "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.3/x64/d3d11.dll        "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.7.3/x64/d3d10core.dll    "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7557,9 +7541,8 @@ w_metadata dxvk1080 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.8.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1080()
@@ -7579,7 +7562,6 @@ load_dxvk1080()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.8.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.8/x32/dxgi.dll         "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8/x32/d3d11.dll        "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8/x32/d3d10core.dll    "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7587,13 +7569,11 @@ load_dxvk1080()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.8/x64/dxgi.dll         "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8/x64/d3d11.dll        "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8/x64/d3d10core.dll    "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7604,9 +7584,8 @@ w_metadata dxvk1081 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.8.1.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1081()
@@ -7626,7 +7605,6 @@ load_dxvk1081()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.8.1.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.8.1/x32/dxgi.dll       "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8.1/x32/d3d11.dll      "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8.1/x32/d3d10core.dll  "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7634,13 +7612,11 @@ load_dxvk1081()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.8.1/x64/dxgi.dll       "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8.1/x64/d3d11.dll      "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.8.1/x64/d3d10core.dll  "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7651,9 +7627,8 @@ w_metadata dxvk1090 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.9.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1090()
@@ -7673,7 +7648,6 @@ load_dxvk1090()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.9.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9/x32/dxgi.dll         "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9/x32/d3d11.dll        "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9/x32/d3d10core.dll    "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7681,13 +7655,11 @@ load_dxvk1090()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9/x64/dxgi.dll         "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9/x64/d3d11.dll        "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9/x64/d3d10core.dll    "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7698,9 +7670,8 @@ w_metadata dxvk1091 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.9.1.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1091()
@@ -7720,7 +7691,6 @@ load_dxvk1091()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.9.1.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.1/x32/dxgi.dll       "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.1/x32/d3d11.dll      "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.1/x32/d3d10core.dll  "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7728,13 +7698,11 @@ load_dxvk1091()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.1/x64/dxgi.dll       "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.1/x64/d3d11.dll      "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.1/x64/d3d10core.dll  "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7745,9 +7713,8 @@ w_metadata dxvk1092 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.9.2.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1092()
@@ -7767,7 +7734,6 @@ load_dxvk1092()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.9.2.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.2/x32/dxgi.dll       "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.2/x32/d3d11.dll      "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.2/x32/d3d10core.dll  "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7775,13 +7741,11 @@ load_dxvk1092()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.2/x64/dxgi.dll       "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.2/x64/d3d11.dll      "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.2/x64/d3d10core.dll  "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7792,9 +7756,8 @@ w_metadata dxvk1093 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.9.3.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1093()
@@ -7814,7 +7777,6 @@ load_dxvk1093()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.9.3.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.3/x32/dxgi.dll       "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.3/x32/d3d11.dll      "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.3/x32/d3d10core.dll  "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7822,13 +7784,11 @@ load_dxvk1093()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.3/x64/dxgi.dll       "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.3/x64/d3d11.dll      "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.3/x64/d3d10core.dll  "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7839,9 +7799,8 @@ w_metadata dxvk1094 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.9.4.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1094()
@@ -7861,7 +7820,6 @@ load_dxvk1094()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.9.4.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.4/x32/dxgi.dll       "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.4/x32/d3d11.dll      "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.4/x32/d3d10core.dll  "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7869,13 +7827,11 @@ load_dxvk1094()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.9.4/x64/dxgi.dll       "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.4/x64/d3d11.dll      "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.9.4/x64/d3d10core.dll  "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7886,9 +7842,8 @@ w_metadata dxvk1100 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.10.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1100()
@@ -7908,7 +7863,6 @@ load_dxvk1100()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.10.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10/x32/dxgi.dll        "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10/x32/d3d11.dll       "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10/x32/d3d10core.dll   "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7916,13 +7870,11 @@ load_dxvk1100()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10/x64/dxgi.dll        "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10/x64/d3d11.dll       "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10/x64/d3d10core.dll   "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7933,9 +7885,8 @@ w_metadata dxvk1101 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.10.1.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1101()
@@ -7955,7 +7906,6 @@ load_dxvk1101()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.10.1.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10.1/x32/dxgi.dll      "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.1/x32/d3d11.dll     "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.1/x32/d3d10core.dll "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -7963,13 +7913,11 @@ load_dxvk1101()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10.1/x64/dxgi.dll      "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.1/x64/d3d11.dll     "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.1/x64/d3d10core.dll "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -7980,9 +7928,8 @@ w_metadata dxvk1102 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.10.2.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1102()
@@ -8002,7 +7949,6 @@ load_dxvk1102()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.10.2.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10.2/x32/dxgi.dll        "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.2/x32/d3d11.dll       "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.2/x32/d3d10core.dll   "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -8010,13 +7956,11 @@ load_dxvk1102()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10.2/x64/dxgi.dll        "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.2/x64/d3d11.dll       "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.2/x64/d3d10core.dll   "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -8027,9 +7971,8 @@ w_metadata dxvk1103 dlls \
     year="2021" \
     media="download" \
     file1="../dxvk/dxvk-v1.10.3.tar.gz" \
-    installed_file1="${W_SYSTEM64_DLLS_WIN64}/dxgi.dll" \
-    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
-    installed_file3="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
+    installed_file1="${W_SYSTEM64_DLLS_WIN64}/d3d11.dll" \
+    installed_file2="${W_SYSTEM64_DLLS_WIN64}/d3d10core.dll" \
     homepage="https://github.com/Gcenx/DXVK-macOS" \
 
 load_dxvk1103()
@@ -8050,7 +7993,6 @@ load_dxvk1103()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-v1.10.3.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10.3/x32/dxgi.dll      "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.3/x32/d3d11.dll     "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.3/x32/d3d10core.dll "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -8058,13 +8000,11 @@ load_dxvk1103()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-v1.10.3/x64/dxgi.dll      "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.3/x64/d3d11.dll     "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-v1.10.3/x64/d3d10core.dll "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
 }
@@ -8096,7 +8036,6 @@ load_dxvk_master()
     w_try tar -xf "${W_CACHE}/dxvk/dxvk-macOS-async-v1.10.3-20230507.tar.gz"
 
     if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x32/dxgi.dll      "${W_SYSTEM32_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x32/d3d11.dll     "${W_SYSTEM32_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x32/d3d10core.dll "${W_SYSTEM32_DLLS}"/d3d10core.dll
     else
@@ -8104,15 +8043,53 @@ load_dxvk_master()
     fi
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x64/dxgi.dll      "${W_SYSTEM64_DLLS}"/dxgi.dll
         w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x64/d3d11.dll     "${W_SYSTEM64_DLLS}"/d3d11.dll
         w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x64/d3d10core.dll "${W_SYSTEM64_DLLS}"/d3d10core.dll
     fi
 
     w_override_dlls native,builtin \
-        dxgi \
         d3d11 \
         d3d10core
+}
+
+# Only exists as Apples DXGI isn't usable with DXVK
+w_metadata dxvk_master_dxgi dlls \
+    title="Vulkan-based DXGI implementation for Wine" \
+    publisher="Philip Rebohle / CodeWeavers" \
+    year="2021" \
+    media="download" \
+    file1="../dxvk/dxvk-macOS-async-v1.10.3-20230507.tar.gz" \
+    homepage="https://github.com/Gcenx/DXVK-macOS" \
+
+load_dxvk_master_dxgi()
+{
+    if w_wine_version_in ,7.1 ; then
+        w_die "${W_PACKAGE} requires wine version 7.1 (or newer)"
+    fi
+
+    # MoltenVK uses the Metal API for Vulkan on macOS so 64Bit only
+    if w_wine_version_in ,7.6 ; then
+        w_warn "${W_PACKAGE} Only installing 64Bit dlls"
+        w_package_unsupported_win32
+    fi
+
+    w_download_to dxvk https://github.com/Gcenx/DXVK-macOS/releases/download/v1.10.3-20230507/dxvk-macOS-async-v1.10.3-20230507.tar.gz f67d99d0a8eeedd7d406b283a3df9f939b5965acb00efcb33d0c6235c195a516
+
+    w_try_cd "${W_TMP}"
+    w_try tar -xf "${W_CACHE}/dxvk/dxvk-macOS-async-v1.10.3-20230507.tar.gz"
+
+    if [[ ${OSTYPE:6} -ge 19 ]] && w_wine_version_in 7.6, ; then
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x32/dxgi.dll      "${W_SYSTEM32_DLLS}"/dxgi.dll
+    else
+        w_warn "Skipping 32bit dlls"
+    fi
+
+    if [ "${W_ARCH}" = "win64" ]; then
+        w_try_cp_dll "${W_TMP}"/dxvk-macOS-async-v1.10.3-20230507/x64/dxgi.dll      "${W_SYSTEM64_DLLS}"/dxgi.dll
+    fi
+
+    w_override_dlls native,builtin \
+        dxgi
 }
 
 #----------------------------------------------------------------
