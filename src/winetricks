@@ -14843,6 +14843,58 @@ load_dxwnd()
 
 #----------------------------------------------------------------
 
+w_metadata eadesktop apps \
+    title="EA Desktop app" \
+    publisher="EA" \
+    year="2022" \
+    media="download" \
+    file1="EAappInstaller.exe" \
+    installed_file1="${W_PROGRAMS_WIN}/Electronic Arts/EA Desktop/EA Desktop/EALauncher.exe" \
+    homepage="https://www.ea.com/ea-app"
+
+load_eadesktop()
+{
+    w_package_unsupported_win32
+
+    if w_workaround_wine_bug 32342 "QtWebEngineProcess.exe crashes when updating or launching EALauncher (missing fonts)"; then
+        w_call corefonts
+    fi
+
+    if w_workaround_wine_bug 36863 "Disabling In-game overlay."; then
+        w_override_dlls disabled IGOProxy32.exe
+    fi
+
+    if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
+        w_call d3dcompiler_47
+    fi
+
+    if w_wine_version_in ,8.0 ; then
+        w_warn "Install dxvk_master if not using D3DMetal"
+    fi
+
+    w_download https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+    # /SILENT doesn't work unlike OriginSetup.exe
+    # Disabling EALauncher.exe to stop it launching after install is complete.
+    # Not using w_try as the installer will give status 5 due to not finding EALauncher.exe.
+    # Make AutoHotkey script to automate installation.
+    WINEDLLOVERRIDES=EALauncher.exe=d "${WINE}" EAappInstaller.exe
+
+    w_warn "Stop Steam from installing EA app"
+    cat > "${W_TMP}"/ea-app.reg <<_EOF_
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\\Software\\Electronic Arts\\EA Desktop]
+"InstallSuccessful"="true"
+
+_EOF_
+    w_try_regedit "${W_TMP}"/ea-app.reg
+
+}
+
+#----------------------------------------------------------------
+
 w_metadata emu8086 apps \
     title="emu8086" \
     publisher="emu8086.com" \
