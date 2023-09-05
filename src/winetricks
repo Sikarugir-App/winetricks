@@ -14721,6 +14721,67 @@ load_dxwnd()
 
 #----------------------------------------------------------------
 
+w_metadata ea_app dlls \
+    title="EA-App" \
+    homepage="https://www.ea.com/ea-app" \
+    publisher="EA" \
+    year="2022" \
+    media="download"
+
+load_ea_app()
+{
+    w_call eadesktop
+}
+
+w_metadata eadesktop apps \
+    title="EA Desktop app" \
+    publisher="EA" \
+    year="2022" \
+    media="download" \
+    file1="EAappInstaller.exe" \
+    installed_file1="${W_PROGRAMS_WIN}/Electronic Arts/EA Desktop/EA Desktop/EALauncher.exe" \
+    homepage="https://www.ea.com/ea-app"
+
+load_eadesktop()
+{
+    w_package_unsupported_win32
+
+    if w_wine_version_in ,7.6 ; then
+        w_die "${W_PACKAGE} requires wine version 7.7 (or newer)"
+    fi
+
+    if w_workaround_wine_bug 32342 "EACefSubProcess crashes when updating or launching EALauncher (missing fonts)"; then
+        w_call corefonts
+    fi
+
+    if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
+        w_call d3dcompiler_47
+        w_call dxvk
+    fi
+
+    w_override_dlls disabled EACrashReporter.exe
+
+    w_download https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe 2270592e00263b7f9af84652f7fc09449066f0e7395a4a37678e134ae46791fb
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+
+    # NSIS installer
+    WINEDLLOVERRIDES=EALauncher.exe=d "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+ /S} > /dev/null 2>&1
+
+    # Don't auto starting when refreshing the wineprefix
+    "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v EADM /f || true
+
+    w_warn "Stop Steam from installing EA app"
+    cat > "${W_TMP}"/ea-app.reg <<_EOF_
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\\Software\\Electronic Arts\\EA Desktop]
+"InstallSuccessful"="true"
+_EOF_
+    w_try_regedit "${W_TMP}"/ea-app.reg
+}
+
+#----------------------------------------------------------------
+
 w_metadata emu8086 apps \
     title="emu8086" \
     publisher="emu8086.com" \
