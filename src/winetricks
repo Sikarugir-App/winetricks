@@ -8948,6 +8948,7 @@ load_dotnet452()
 
     # Seems unneeded in wine-2.0
     # w_call dotnet35
+    w_store_winver
     w_call dotnet40
     w_set_winver win7
 
@@ -8957,9 +8958,6 @@ load_dotnet452()
 
     w_override_dlls native mscoree
 
-    w_warn "Setting Windows version to 2003, otherwise applications using .NET 4.5 will subtly fail"
-    w_set_winver win2k3
-
     # See https://bugs.winehq.org/show_bug.cgi?id=47277#c9
     case "${LANG}" in
         C|en_US.UTF-8*) ;;
@@ -8968,6 +8966,8 @@ load_dotnet452()
         # I don't think it's worth warning *every* non-en_US.UTF-8 user:
         # *) w_warn "
     esac
+
+    w_restore_winver
 }
 
 verify_dotnet452()
