@@ -8193,6 +8193,7 @@ load_dotnet462()
 
     w_call remove_mono internal
 
+    w_store_winver
     w_call dotnet461
     w_set_winver win7
 
@@ -8214,6 +8215,8 @@ load_dotnet462()
         # I don't think it's worth warning *every* non-en_US.UTF-8 user:
         # *) w_warn "
     esac
+
+    w_restore_winver
 }
 
 verify_dotnet462()
