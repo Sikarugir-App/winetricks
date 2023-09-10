@@ -14720,6 +14720,24 @@ load_busybox()
 
 #----------------------------------------------------------------
 
+w_metadata cnc_ultimate_collection_launchers apps \
+    title="C&C Ultimate Collection Launchers v1.22" \
+    publisher="Bibber" \
+    year="2021" \
+    media="download" \
+    file1="cnc-ultimate-collection-launchers.zip" \
+    homepage="https://bibber.eu/downloads/cnc-ultimate-collection-launchers/"
+
+load_cnc_ultimate_collection_launchers()
+{
+    w_download https://bibber.eu/downloads/cnc-ultimate-collection-launchers.zip 2084a1bf3c7426381a84f646ad4b2fc7bfd655249b1340b4fa547cac4c7c6427
+    w_try_unzip "${W_TMP}" "${W_CACHE}/${W_PACKAGE}"/cnc-ultimate-collection-launchers.zip
+    w_try_cd "${W_TMP}"
+    w_try "${WINE}" "C&C Ultimate Collection Launchers Setup.exe"
+}
+
+#----------------------------------------------------------------
+
 w_metadata cmake apps \
     title="CMake 2.8" \
     publisher="Kitware" \
