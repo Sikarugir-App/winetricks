@@ -14334,6 +14334,28 @@ load_autohotkey()
 
 #----------------------------------------------------------------
 
+w_metadata battle_net apps \
+    title="Battle.net" \
+    publisher="Blizzard" \
+    year="2005" \
+    media="download" \
+    file1="Battle.net-Setup.exe" \
+    installed_exe1="${W_PROGRAMS_X86_WIN}/Battle.net/Battle.net.exe" \
+    homepage="https://www.battle.net"
+
+load_battle_net()
+{
+    w_download "https://www.battle.net/download/getInstallerForGame?os=win&gameProgram=BATTLENET_APP&version=Live" "" "Battle.net-Setup.exe"
+
+    w_override_dlls disabled BlizzardError.exe
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+    w_try "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+ --lang=enUS --installpath="${W_PROGRAMS_X86_WIN}\\Battle.net"} > /dev/null 2>&1
+    w_wineserver -k
+}
+
+#----------------------------------------------------------------
+
 w_metadata busybox apps \
     title="BusyBox FRP-5579-g5749feb35" \
     publisher="Ron Yorston / Busybox authors" \
