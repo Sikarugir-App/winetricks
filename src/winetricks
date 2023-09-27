@@ -14728,12 +14728,32 @@ w_metadata cnc_ultimate_collection_launchers apps \
     file1="cnc-ultimate-collection-launchers.zip" \
     homepage="https://bibber.eu/downloads/cnc-ultimate-collection-launchers/"
 
+helper_cnc_ultimate_collection_launchers_dl()
+{
+    w_download_to cnc_ultimate_collection_launchers https://bibber.eu/downloads/cnc-ultimate-collection-launchers.zip 2084a1bf3c7426381a84f646ad4b2fc7bfd655249b1340b4fa547cac4c7c6427
+    w_try_unzip "${W_TMP}" "${W_CACHE}/${W_PACKAGE}"/cnc-ultimate-collection-launchers.zip
+}
+
 load_cnc_ultimate_collection_launchers()
 {
-    w_download https://bibber.eu/downloads/cnc-ultimate-collection-launchers.zip 2084a1bf3c7426381a84f646ad4b2fc7bfd655249b1340b4fa547cac4c7c6427
-    w_try_unzip "${W_TMP}" "${W_CACHE}/${W_PACKAGE}"/cnc-ultimate-collection-launchers.zip
+    helper_cnc_ultimate_collection_launchers_dl
     w_try_cd "${W_TMP}"
     w_try "${WINE}" "C&C Ultimate Collection Launchers Setup.exe"
+}
+
+#----------------------------------------------------------------
+w_metadata cnc_ultimate_collection_launchers_cp apps \
+    title="C&C Ultimate Collection Launchers v1.22" \
+    publisher="Bibber" \
+    year="2021" \
+    media="download" \
+    file1="cnc-ultimate-collection-launchers.zip" \
+    homepage="https://bibber.eu/downloads/cnc-ultimate-collection-launchers/"
+
+load_cnc_ultimate_collection_launchers_cp()
+{
+    helper_cnc_ultimate_collection_launchers_dl
+    w_try cp -f "${W_CACHE}/${W_PACKAGE}/C&C Ultimate Collection Launchers Setup.exe" "${W_DRIVE_C}/C&C Ultimate Collection Launchers Setup.exe"
 }
 
 #----------------------------------------------------------------
