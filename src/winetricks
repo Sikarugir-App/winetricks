@@ -17013,12 +17013,6 @@ load_steam()
 
     w_try "${WINE}" SteamSetup.exe ${W_OPT_UNATTENDED:+ /S}
 
-    # Not all users need this disabled, but let's play it safe for now
-    if w_workaround_wine_bug 22053 "Disabling gameoverlayrenderer to prevent game crashes on some machines."; then
-        w_override_dlls disabled gameoverlayrenderer
-        w_override_dlls disabled gameoverlayrenderer64
-    fi
-
     if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
         w_call corefonts
     fi
