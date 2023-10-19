@@ -13387,6 +13387,22 @@ load_wsh57()
 #----------------------------------------------------------------
 
 w_metadata xact dlls \
+    title="MS XACT Engine" \
+    publisher="Microsoft" \
+    year="2010" \
+    installed_file1="${W_WINDIR_WIN}/xact.installed.workaround"
+
+load_xact()
+{
+    w_package_unsupported_win32
+
+    w_call xact_x32
+    w_call xact_x64
+
+    w_try touch "${W_WINDIR_UNIX}/xact.installed.workaround"
+}
+
+w_metadata xact_x32 dlls \
     title="MS XACT Engine (32-bit only)" \
     publisher="Microsoft" \
     year="2010" \
@@ -13394,7 +13410,7 @@ w_metadata xact dlls \
     file1="../directx9/directx_Jun2010_redist.exe" \
     installed_file1="${W_SYSTEM32_DLLS_WIN}/xactengine2_0.dll"
 
-load_xact()
+load_xact_x32()
 {
     helper_directx_Jun2010
 
