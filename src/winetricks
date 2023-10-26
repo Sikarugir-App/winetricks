@@ -1560,6 +1560,7 @@ w_download_to()
                 -C - \
                 --fail \
                 --retry "${WINETRICKS_DOWNLOADER_RETRIES}" \
+                ${WINETRICKS_PROXY:+--proxy "${WINETRICKS_PROXY}"} \
                 ${_W_cookiejar:+--cookie "${_W_cookiejar}"} \
                 ${_W_agent:+--user-agent "${_W_agent}"} \
                 "${_W_url}"
