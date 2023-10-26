@@ -2463,9 +2463,6 @@ w_set_winver()
     esac
 
     w_try "${WINE}" winecfg -v "${_W_winver}"
-
-    # Prevent a race when calling from another verb
-    w_wineserver -w
 }
 
 # Restore a previously set winver. If not found, use default
