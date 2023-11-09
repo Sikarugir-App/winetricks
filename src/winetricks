@@ -5953,7 +5953,7 @@ helper_winxp64sp2()
     filename="$1"
 
     # https://www.microsoft.com/en-us/download/details.aspx?id=1779
-    w_download_to winxp64sp2 https://msassist.com/files/WindowsXP/Service_Packs/WindowsServer2003.WindowsXP-KB914961-SP2-x64-ENU.exe 62c6f31edc47f5a00651a83b6fa6edc7b4245dcf693d9233b6d0a79e52a5a57a
+    w_download_to winxp64sp2 https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/helper_winxp64sp2/WindowsServer2003.WindowsXP-KB914961-SP2-x64-ENU.exe 62c6f31edc47f5a00651a83b6fa6edc7b4245dcf693d9233b6d0a79e52a5a57a
 
     w_try_cabextract -d "${W_TMP}" -L -F "${filename}" "${W_CACHE}"/winxp64sp2/WindowsServer2003.WindowsXP-KB914961-SP2-x64-ENU.exe
 }
