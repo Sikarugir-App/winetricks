@@ -2681,7 +2681,7 @@ w_do_call()
             windows_cmd|wine_cmd) ;;
             *)
                 case "${_W_category}-${WINETRICKS_OPT_SHAREDPREFIX}" in
-                    apps-0|benchmarks-0) winetricks_set_wineprefix "${cmd}";;
+                    apps-0) winetricks_set_wineprefix "${cmd}";;
                     *) winetricks_set_wineprefix "${_W_prefix_name}";;
                 esac
                 # If it's a new wineprefix, give it metadata
@@ -3153,7 +3153,6 @@ winetricks_prefixmenu()
         bg*) _W_msg_title="Winetricks - изберете действие"
             _W_msg_body='Какво да бъде?'
             _W_msg_apps='Инсталиране на приложение'
-            _W_msg_benchmarks='Инсталиране на еталонен тест'
             _W_msg_default="Избиране на папката по подразбиране"
             _W_msg_mkprefix="Създаване на нова папка"
             _W_msg_unattended0="Изключване на автоматичното инсталиране"
@@ -3163,7 +3162,6 @@ winetricks_prefixmenu()
         ru*) _W_msg_title="Winetricks - выберите путь wine (префикс)"
             _W_msg_body='Что вы хотите сделать?'
             _W_msg_apps='Установить программу'
-            _W_msg_benchmarks='Установить приложение для оценки производительности'
             _W_msg_default="Использовать префикс по умолчанию"
             _W_msg_mkprefix="Создать новый префикс wine"
             _W_msg_unattended0="Отключить автоматическую установку"
@@ -3173,7 +3171,6 @@ winetricks_prefixmenu()
         uk*) _W_msg_title="Winetricks - виберіть wineprefix"
             _W_msg_body='Що Ви хочете зробити?'
             _W_msg_apps='Встановити додаток'
-            _W_msg_benchmarks='Встановити benchmark'
             _W_msg_default="Вибрати wineprefix за замовчуванням"
             _W_msg_mkprefix="створити новий wineprefix"
             _W_msg_unattended0="Вимкнути автоматичне встановлення"
@@ -3183,7 +3180,6 @@ winetricks_prefixmenu()
         zh_CN*)   _W_msg_title="Winetricks - 择一 Wine 容器"
             _W_msg_body='君欲何为？'
             _W_msg_apps='安装一个 Windows 应用'
-            _W_msg_benchmarks='安装一个基准测试软件'
             _W_msg_default="选择默认的 Wine 容器"
             _W_msg_mkprefix="创建新的 Wine 容器"
             _W_msg_unattended0="禁用静默安装"
@@ -3193,7 +3189,6 @@ winetricks_prefixmenu()
         zh_TW*|zh_HK*)   _W_msg_title="Winetricks - 取一 Wine 容器"
             _W_msg_body='君欲何為？'
             _W_msg_apps='安裝一個 Windows 應用'
-            _W_msg_benchmarks='安裝一個基准測試軟體'
             _W_msg_default="選取預設的 Wine 容器"
             _W_msg_mkprefix="建立新的 Wine 容器"
             _W_msg_unattended0="禁用靜默安裝"
@@ -3203,7 +3198,6 @@ winetricks_prefixmenu()
         de*) _W_msg_title="Winetricks - wineprefix auswählen"
             _W_msg_body='Was möchten Sie tun?'
             _W_msg_apps='Ein Programm installieren'
-            _W_msg_benchmarks='Einen Benchmark-Test installieren'
             _W_msg_default="Standard wineprefix auswählen"
             _W_msg_mkprefix="Neuen wineprefix erstellen"
             _W_msg_unattended0="Automatische Installation deaktivieren"
@@ -3213,7 +3207,6 @@ winetricks_prefixmenu()
         pl*) _W_msg_title="Winetricks - wybierz prefiks Wine"
             _W_msg_body='Co chcesz zrobić?'
             _W_msg_apps='Zainstalować aplikację'
-            _W_msg_benchmarks='Zainstalować program sprawdzający wydajność komputera'
             _W_msg_default="Wybrać domyślny prefiks Wine"
             _W_msg_mkprefix="Stwórz nowy prefiks Wine"
             _W_msg_unattended0="Wyłącz cichą instalację"
@@ -3223,7 +3216,6 @@ winetricks_prefixmenu()
         pt*) _W_msg_title="Winetricks - Escolha um wineprefix"
             _W_msg_body='O que você quer fazer?'
             _W_msg_apps='Instalar um programa'
-            _W_msg_benchmarks='Instalar um teste de desempenho/benchmark'
             _W_msg_default="Selecionar o prefixo padrão wineprefix"
             _W_msg_mkprefix="Criar novo prefixo wineprefix"
             _W_msg_unattended0="Desativar instalação silenciosa"
@@ -3233,7 +3225,6 @@ winetricks_prefixmenu()
         *)  _W_msg_title="Winetricks - choose a wineprefix"
             _W_msg_body='What do you want to do?'
             _W_msg_apps='Install an application'
-            _W_msg_benchmarks='Install a benchmark'
             _W_msg_default="Select the default wineprefix"
             _W_msg_mkprefix="Create new wineprefix"
             _W_msg_unattended0="Disable silent install"
@@ -3262,7 +3253,6 @@ winetricks_prefixmenu()
                 --hide-column 2 \
                 FALSE help       '${_W_msg_help}' \
                 FALSE apps       '${_W_msg_apps}' \
-                FALSE benchmarks '${_W_msg_benchmarks}' \
                 TRUE  main       '${_W_msg_default}' \
                 FALSE mkprefix   '${_W_msg_mkprefix}' \
                 " \
@@ -3301,7 +3291,6 @@ winetricks_prefixmenu()
                 --separate-output \
                 --radiolist '${_W_msg_body}' \
                 help       '${_W_msg_help}'       off \
-                benchmarks '${_W_msg_benchmarks}' off \
                 apps       '${_W_msg_apps}'       off \
                 main       '${_W_msg_default}'    on  \
                 mkprefix   '${_W_msg_mkprefix}'   off \
@@ -3591,7 +3580,7 @@ winetricks_mainmenu()
 
             ;;
     esac
-    unset _W_msg_body _W_msg_title _W_msg_apps _W_msg_benchmarks _W_msg_dlls _W_msg_settings
+    unset _W_msg_body _W_msg_title _W_msg_apps _W_msg_dlls _W_msg_settings
 }
 
 winetricks_settings_menu()
@@ -4147,7 +4136,7 @@ winetricks_is_installed()
         *)
             # Compute wineprefix for this app
             case "${_W_category}-${WINETRICKS_OPT_SHAREDPREFIX}" in
-                apps-0|benchmarks-0)
+                apps-0)
                     _W_prefix="${W_PREFIXES_ROOT}/$1"
                     ;;
                 *)
@@ -4724,7 +4713,7 @@ winetricks_init()
     WINETRICKS_METADATA="${WINETRICKS_WORKDIR}/metadata"
 
     # The list of categories is also hardcoded in winetricks_mainmenu() :-(
-    WINETRICKS_CATEGORIES="apps benchmarks dlls fonts settings mkprefix"
+    WINETRICKS_CATEGORIES="apps dlls fonts settings mkprefix"
     for _W_cat in ${WINETRICKS_CATEGORIES}; do
         w_try_mkdir -q "${WINETRICKS_METADATA}/${_W_cat}"
     done
@@ -4925,7 +4914,6 @@ winetricks_usage()
 list                  показва категориите
 list-all              показва всички категории и техните глаголи
 apps list             показва глаголите в категория 'приложения'
-benchmarks list       показва глаголите в категория 'еталонни тестове'
 dlls list             показва глаголите в категория 'DLL файлове'
 fonts list            показва глаголите в категория 'шрифтове'
 settings list         показва глаголите в категория 'настройки'
@@ -4963,7 +4951,6 @@ Diverse verber:
 list                  vis en liste over alle verber
 list-all              list all categories and their verbs
 apps list             list verbs in category 'applications'
-benchmarks list       list verbs in category 'benchmarks'
 dlls list             list verbs in category 'dlls'
 fonts list            list verbs in category 'fonts'
 settings list         list verbs in category 'settings'
@@ -5003,7 +4990,6 @@ Kommandos:
 list                  Kategorien auflisten
 list-all              Alle Kategorien und deren Verben auflisten
 apps list             Verben der Kategorie 'Anwendungen' auflisten
-benchmarks list       Verben der Kategorie 'Benchmarks' auflisten
 dlls list             Verben der Kategorie 'DLLs' auflisten
 fonts list            list verbs in category 'fonts'
 settings list         Verben der Kategorie 'Einstellungen' auflisten
@@ -5045,7 +5031,6 @@ Commands:
 list                  list categories
 list-all              list all categories and their verbs
 apps list             list verbs in category 'applications'
-benchmarks list       list verbs in category 'benchmarks'
 dlls list             list verbs in category 'dlls'
 fonts list            list verbs in category 'fonts'
 settings list         list verbs in category 'settings'
@@ -15524,380 +15509,6 @@ load_wmp11()
     w_restore_winver
 }
 
-#----------------------------------------------------------------
-# Benchmarks
-#----------------------------------------------------------------
-
-w_metadata 3dmark2000 benchmarks \
-    title="3DMark2000" \
-    publisher="MadOnion.com" \
-    year="2000" \
-    media="download" \
-    file1="3dmark2000_v11_100308.exe" \
-    installed_file1="${W_PROGRAMS_X86_WIN}/MadOnion.com/3DMark2000/3DMark2000.exe"
-
-load_3dmark2000()
-{
-    # https://www.futuremark.com/download/3dmark2000/
-    if ! test -f "${W_CACHE}/${W_PACKAGE}/3dmark2000_v11_100308.exe"; then
-        w_download http://www.ocinside.de/download/3dmark2000_v11_100308.exe 1b392776fd377de8cc6db7c1d8b1565485e20816d1b053de3f16a743e629048d
-    fi
-
-    w_try_unzip "${W_TMP}/${W_PACKAGE}" "${W_CACHE}/${W_PACKAGE}"/3dmark2000_v11_100308.exe
-    w_try_cd "${W_TMP}/${W_PACKAGE}"
-    w_ahk_do "
-        SetTitleMatchMode, 2
-        run Setup.exe
-        WinWait Welcome
-        ;ControlClick Button1  ; Next
-        Sleep 1000
-        Send {Enter}           ; Next
-        WinWait License
-        ;ControlClick Button2  ; Yes
-        Sleep 1000
-        Send {Enter}           ; Yes
-        ;WinWaitClose ahk_class #32770 ; License
-        WinWait ahk_class #32770, Destination
-        ;ControlClick Button1  ; Next
-        Sleep 1000
-        Send {Enter}           ; Next
-        ;WinWaitClose ahk_class #32770 ; Destination
-        WinWait, Start
-        ;ControlClick Button1  ; Next
-        Sleep 1000
-        Send {Enter}           ; Next
-        WinWait Registration
-        ControlClick Button1  ; Next
-        WinWait Complete
-        Sleep 1000
-        ControlClick Button1  ; Unclick View Readme
-        ;ControlClick Button4  ; Finish
-        Send {Enter}           ; Finish
-        WinWaitClose
-    "
-}
-
-#----------------------------------------------------------------
-
-w_metadata 3dmark2001 benchmarks \
-    title="3DMark2001" \
-    publisher="MadOnion.com" \
-    year="2001" \
-    media="download" \
-    file1="3dmark2001se_330_100308.exe" \
-    installed_file1="${W_PROGRAMS_X86_WIN}/MadOnion.com/3DMark2001 SE/3DMark2001SE.exe"
-
-load_3dmark2001()
-{
-    # https://www.futuremark.com/download/3dmark2001/
-    if ! test -f "${W_CACHE}/${W_PACKAGE}"/3dmark2001se_330_100308.exe; then
-        w_download http://www.ocinside.de/download/3dmark2001se_330_100308.exe e34dfd32ef8fe8018a6f41f33fc3ab6dba45f2e90881688ac75a18b97dcd8813
-    fi
-
-    w_try_cd "${W_CACHE}/${W_PACKAGE}"
-    w_ahk_do "
-        SetWinDelay 1000
-        SetTitleMatchMode, 2
-        run 3dmark2001se_330_100308.exe
-        WinWait ahk_class #32770 ; welcome
-        if ( w_opt_unattended > 0 ) {
-            ControlClick Button2  ; Next
-            sleep 5000
-            WinWait ahk_class #32770 ; License
-            ControlClick Button2  ; Next
-            WinWait ahk_class #32770, Destination
-            ControlClick Button1  ; Next
-            WinWait ahk_class #32770, Start
-            ControlClick Button1  ; Next
-            WinWait,, Registration
-            ControlClick Button2  ; Next
-        }
-        WinWait,, Complete
-        if ( w_opt_unattended > 0 ) {
-            ControlClick Button1  ; Unclick View Readme
-            ControlClick Button4  ; Finish
-        }
-        WinWaitClose
-    "
-}
-
-#----------------------------------------------------------------
-
-w_metadata 3dmark03 benchmarks \
-    title="3D Mark 03" \
-    publisher="Futuremark" \
-    year="2003" \
-    media="manual_download" \
-    file1="3DMark03_v360_1901.exe" \
-    installed_exe1="${W_PROGRAMS_X86_WIN}/Futuremark/3DMark03/3DMark03.exe"
-
-load_3dmark03()
-{
-    # https://www.futuremark.com/benchmarks/3dmark03/download/
-    if ! test -f "${W_CACHE}/${W_PACKAGE}/3DMark03_v360_1901.exe"; then
-        w_download_manual https://www.futuremark.com/download/3dmark03/ 3DMark03_v360_1901.exe 86d7f73747944c553e47e6ab5a74138e8bbca07fab8216ae70a61ac7f9a1c468
-    fi
-
-    w_try_cd "${W_CACHE}/${W_PACKAGE}"
-    w_warn "Don't use mouse while this installer is running.  Sorry..."
-    # This old installer doesn't seem to be scriptable the usual way, so spray and pray.
-    w_ahk_do "
-        SetTitleMatchMode, 2
-        run 3DMark03_v360_1901.exe
-        WinWait 3DMark03 - InstallShield Wizard, Welcome
-        if ( w_opt_unattended > 0 ) {
-            WinActivate
-            Send {Enter}
-            Sleep 2000
-            WinWait 3DMark03 - InstallShield Wizard, License
-            WinActivate
-            ; Accept license
-            Send a
-            Send {Enter}
-            Sleep 2000
-            ; Choose Destination
-            Send {Enter}
-            Sleep 2000
-            ; Begin install
-            Send {Enter}
-            ; Wait for install to finish
-            WinWait 3DMark03, Registration
-            ; Purchase later
-            Send {Tab}
-            Send {Tab}
-            Send {Enter}
-        }
-        WinWait, 3DMark03 - InstallShield Wizard, Complete
-        if ( w_opt_unattended > 0 ) {
-            ; Uncheck readme
-            Send {Space}
-            Send {Tab}
-            Send {Tab}
-            Send {Enter}
-        }
-        WinWaitClose, 3DMark03 - InstallShield Wizard, Complete
-    "
-}
-
-#----------------------------------------------------------------
-
-w_metadata 3dmark05 benchmarks \
-    title="3D Mark 05" \
-    publisher="Futuremark" \
-    year="2005" \
-    media="download" \
-    file1="3dmark05_v130_1901.exe" \
-    installed_exe1="${W_PROGRAMS_X86_WIN}/Futuremark/3DMark05/3DMark05.exe"
-
-load_3dmark05()
-{
-    # https://www.futuremark.com/download/3dmark05/
-    if ! test -f "${W_CACHE}/${W_PACKAGE}/3DMark05_v130_1901.exe"; then
-        w_download http://www.ocinside.de/download/3dmark05_v130_1901.exe af97f20665090985ee8a4ba83d137e796bfe12e0dfb7fe285712fae198b34334
-    fi
-
-    w_try_cd "${W_CACHE}/${W_PACKAGE}"
-    w_ahk_do "
-        run 3DMark05_v130_1901.exe
-        WinWait ahk_class #32770, Welcome
-        if ( w_opt_unattended > 0 ) {
-            Send {Enter}
-            WinWait, ahk_class #32770, License
-            ControlClick Button1 ; Accept
-            ControlClick Button4 ; Next
-            WinWait, ahk_class #32770, Destination
-            ControlClick Button1 ; Next
-            WinWait, ahk_class #32770, Install
-            ControlClick Button1 ; Install
-            WinWait, ahk_class #32770, Purchase
-            ControlClick Button4 ; Later
-        }
-        WinWait, ahk_class #32770, Complete
-        if ( w_opt_unattended > 0 ) {
-            ControlClick Button1 ; Uncheck view readme
-            ControlClick Button3 ; Finish
-        }
-        WinWaitClose, ahk_class #32770, Complete
-    "
-    if w_workaround_wine_bug 22392; then
-        w_warn "You must run the app with the -nosysteminfo option to avoid a crash on startup"
-    fi
-}
-
-#----------------------------------------------------------------
-
-w_metadata 3dmark06 benchmarks \
-    title="3D Mark 06" \
-    publisher="Futuremark" \
-    year="2006" \
-    media="manual_download" \
-    file1="3DMark06_v121_installer.exe" \
-    installed_exe1="${W_PROGRAMS_X86_WIN}/Futuremark/3DMark06/3DMark06.exe"
-
-load_3dmark06()
-{
-    w_download_manual https://www.futuremark.com/support/downloads 3DMark06_v121_installer.exe 362ebafd2b9c89a59a233e4328596438b74a32827feb65fe2837154c60a37da3
-
-    w_try_cd "${W_CACHE}/${W_PACKAGE}"
-    w_ahk_do "
-        run ${file1}
-        WinWait ahk_class #32770, Welcome
-        if ( w_opt_unattended > 0 ) {
-            Send {Enter}
-            WinWait, ahk_class #32770, License
-            ControlClick Button1 ; Accept
-            ControlClick Button4 ; Next
-            WinWait, ahk_class #32770, Destination
-            ControlClick Button1 ; Next
-            WinWait, ahk_class #32770, Install
-            ControlClick Button1 ; Install
-            WinWait ahk_class OpenAL Installer
-            ControlClick Button2 ; OK
-            WinWait ahk_class #32770
-            ControlClick Button1 ; OK
-        }
-        WinWait, ahk_class #32770, Complete
-        if ( w_opt_unattended > 0 ) {
-            ControlClick Button1 ; Uncheck view readme
-            ControlClick Button3 ; Finish
-        }
-        WinWaitClose, ahk_class #32770, Complete
-    "
-
-    if w_workaround_wine_bug 24417 "Installing shader compiler..."; then
-        # "Demo" button doesn't work without this.  d3dcompiler_43 related.
-        w_call d3dx9_28
-        w_call d3dx9_36
-    fi
-
-    if w_workaround_wine_bug 22392; then
-        w_warn "You must run the app with the -nosysteminfo option to avoid a crash on startup"
-    fi
-}
-
-#----------------------------------------------------------------
-
-w_metadata stalker_pripyat_bench benchmarks \
-    title="S.T.A.L.K.E.R.: Call of Pripyat benchmark" \
-    publisher="GSC Game World" \
-    year="2009" \
-    media="manual_download" \
-    file1="stkcop-bench-setup.exe" \
-    installed_exe1="${W_PROGRAMS_X86_WIN}/Call Of Pripyat Benchmark/Benchmark.exe"
-
-load_stalker_pripyat_bench()
-{
-    # Much faster
-    w_download_manual http://www.bigdownload.com/games/stalker-call-of-pripyat/pc/stalker-call-of-pripyat-benchmark stkcop-bench-setup.exe 8c810fba1bbb9c58fc01f4f602479886680c9f4b491dd0afe935e27083f54845
-    #w_download https://files.gsc-game.com/st/bench/stkcop-bench-setup.exe 8c810fba1bbb9c58fc01f4f602479886680c9f4b491dd0afe935e27083f54845
-
-    w_try_cd "${W_CACHE}/${W_PACKAGE}"
-
-    # FIXME: a bit fragile, if you're browsing the web while installing, it sometimes gets stuck.
-    w_ahk_do "
-        SetTitleMatchMode, 2
-        run ${file1}
-        WinWait,Setup - Call Of Pripyat Benchmark
-        if ( w_opt_unattended > 0 ) {
-            sleep 1000
-            ControlClick TNewButton1 ; Next
-            WinWait,Setup - Call Of Pripyat Benchmark,License
-            sleep 1000
-            ControlClick TNewRadioButton1 ; accept
-            sleep 1000
-            ControlClick TNewButton2 ; Next
-            WinWait,Setup - Call Of Pripyat Benchmark,Destination
-            sleep 1000
-            ControlClick TNewButton3 ; Next
-            WinWait,Setup - Call Of Pripyat Benchmark,shortcuts
-            sleep 1000
-            ControlClick TNewButton4 ; Next
-            WinWait,Setup - Call Of Pripyat Benchmark,performed
-            sleep 1000
-            ControlClick TNewButton4 ; Next
-            WinWait,Setup - Call Of Pripyat Benchmark,ready
-            sleep 1000
-            ControlClick, TNewButton4 ; Next  (nah, who reads doc?)
-        }
-        WinWait,Setup - Call Of Pripyat Benchmark,finished
-        if ( w_opt_unattended > 0 ) {
-            sleep 1000
-            Send {Space}  ; uncheck launch
-            sleep 1000
-            ControlClick TNewButton4 ; Finish
-        }
-        WinWaitClose,Setup - Call Of Pripyat Benchmark,finished
-    "
-
-    if w_workaround_wine_bug 24868; then
-        w_call d3dx9_31
-        w_call d3dx9_42
-    fi
-}
-
-#----------------------------------------------------------------
-
-w_metadata unigine_heaven benchmarks \
-    title="Unigen Heaven 2.1 Benchmark" \
-    publisher="Unigen" \
-    year="2010" \
-    media="manual_download" \
-    file1="Unigine_Heaven-2.1.msi"
-
-load_unigine_heaven()
-{
-    w_download_manual "https://www.fileplanet.com/212489/210000/fileinfo/Unigine-'Heaven'-Benchmark-2.1-%28Windows%29" 47113b285253a1ebce04527a31d734c0dfce5724e8d2643c6c1b822a940e7073
-
-    w_try_cd "${W_CACHE}/${W_PACKAGE}"
-    w_ahk_do "
-        SetWinDelay 1000
-        SetTitleMatchMode, 2
-        run msiexec /i ${file1}
-        if ( w_opt_unattended > 0 ) {
-            WinWait ahk_class MsiDialogCloseClass
-            Send {Enter}
-            WinWait ahk_class MsiDialogCloseClass, License
-            ControlClick Button1 ; Accept
-            ControlClick Button3 ; Accept
-            WinWait ahk_class MsiDialogCloseClass, Choose
-            ControlClick Button1 ; Typical
-            WinWait ahk_class MsiDialogCloseClass, Ready
-            ControlClick Button2 ; Install
-            ; FIXME: on systems with OpenAL already (Win7?), the next four lines
-            ; are not needed.  We should somehow wait for either OpenAL window
-            ; *or* Completed window.
-            WinWait ahk_class OpenAL Installer
-            ControlClick Button2 ; OK
-            WinWait ahk_class #32770
-            ControlClick Button1 ; OK
-        }
-        WinWait ahk_class MsiDialogCloseClass, Completed
-        if ( w_opt_unattended > 0 ) {
-            ControlClick Button1 ; Finish
-            Send {Enter}
-        }
-        winwaitclose
-    "
-}
-
-#----------------------------------------------------------------
-
-w_metadata wglgears benchmarks \
-    title="wglgears" \
-    publisher="Clinton L. Jeffery" \
-    year="2005" \
-    media="download" \
-    file1="wglgears.exe" \
-    installed_exe1="${W_SYSTEM32_DLLS_WIN}/wglgears.exe"
-
-load_wglgears()
-{
-    # Original site http://www2.cs.uidaho.edu/~jeffery/win32/wglgears.exe is 403 as of 2019/04/07
-    w_download https://web.archive.org/web/20091001002702/http://www2.cs.uidaho.edu/~jeffery/win32/wglgears.exe 858ba95ea3c9af4ded1f4100e59b6e8e57024f3efef56304dbd48106e8f2f6f7
-    cp "${W_CACHE}"/wglgears/wglgears.exe "${W_SYSTEM32_DLLS}"
-    chmod +x "${W_SYSTEM32_DLLS}/wglgears.exe"
-}
-
 #######################
 # settings
 #######################
@@ -17307,7 +16918,7 @@ execute_command()
 
     case "$1" in
         # FIXME: avoid duplicated code
-        apps|benchmarks|dlls|fonts|prefix|settings)
+        apps|dlls|fonts|prefix|settings)
             WINETRICKS_CURMENU="$1"
             ;;
 
@@ -17329,7 +16940,7 @@ execute_command()
         list-installed) winetricks_list_installed ;;
         list-all)
             old_menu="${WINETRICKS_CURMENU}"
-            for WINETRICKS_CURMENU in apps benchmarks dlls fonts prefix settings; do
+            for WINETRICKS_CURMENU in apps dlls fonts prefix settings; do
                 echo "===== ${WINETRICKS_CURMENU} ====="
                 winetricks_list_all
             done
@@ -17468,7 +17079,7 @@ if ! test "${WINETRICKS_LIB}"; then
                 if test "${verbs}" = ""; then
                     # "user didn't pick anything, back up a level in the menu"
                     case "${WINETRICKS_CURMENU}-${WINETRICKS_OPT_SHAREDPREFIX}" in
-                        apps-0|benchmarks-0|main-*) WINETRICKS_CURMENU=prefix ;;
+                        apps-0|main-*) WINETRICKS_CURMENU=prefix ;;
                         prefix-*) break ;;
                         *) WINETRICKS_CURMENU=main ;;
                     esac
@@ -17497,7 +17108,7 @@ if ! test "${WINETRICKS_LIB}"; then
                             done
 
                             case "${WINETRICKS_CURMENU}-${WINETRICKS_OPT_SHAREDPREFIX}" in
-                                prefix-*|apps-0|benchmarks-0)
+                                prefix-*|apps-0)
                                     # After installing isolated app, return to prefix picker
                                     WINETRICKS_CURMENU=prefix
                                     ;;
