@@ -16221,26 +16221,31 @@ load_steam()
 
     w_try "${WINE}" SteamSetup.exe ${W_OPT_UNATTENDED:+ /S}
 
-    # Not all users need this disabled, but let's play it safe for now
-    if w_workaround_wine_bug 22053 "Disabling gameoverlayrenderer to prevent game crashes on some machines."; then
-        w_override_dlls disabled gameoverlayrenderer
+    if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
+        w_call corefonts
     fi
 
     if w_workaround_wine_bug 44985 "Disabling libglesv2 to make Store and Library function correctly." 7.0,; then
         w_override_app_dlls steamwebhelper.exe disabled libglesv2
     fi
 
-    if [ "$(uname -s)" = "Darwin" ] && w_workaround_wine_bug 49839 "Steamwebhelper.exe crashes when running Steam."; then
-        w_warn "Steam must be launched with -allosarches -cef-force-32bit -cef-in-process-gpu -cef-disable-sandbox"
+    if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
+        w_call d3dcompiler_47
     fi
+
+    w_override_dlls disabled EACrashReporter.exe
+
+    # Ubisoft Connect
+    w_set_app_winver upc.exe win7
 
     # vulkandriverquery & vulkandriverquery64 crash a lot on macOS
     if [ "$(uname -s)" = "Darwin" ]; then
-        w_call nocrashdialog
+        w_override_dlls disabled vulkandriverquery.exe
+        w_override_dlls disabled vulkandriverquery64.exe
     fi
 
-    # Otherwise Steam Store and Library don't show
-    w_call corefonts
+    # Don't auto starting when refreshing the wineprefix
+    "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v Steam /f || true
 }
 
 #----------------------------------------------------------------
