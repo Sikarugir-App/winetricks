@@ -16766,6 +16766,67 @@ _EOF_
 
 #----------------------------------------------------------------
 
+w_metadata force_gpu=amd settings \
+    title="Fake an AMD RADEON RX 480 card"
+w_metadata force_gpu=nvidia settings \
+    title="Fake an Nvidia GeForce GTX 970 card"
+w_metadata force_gpu=no settings \
+    title="Use WINE defaults for GPU"
+
+load_force_gpu()
+{
+    # Both cards are from dlls/wined3d/adapter_gl.c
+    # cards_amd_mesa[] / cards_nvidia_mesa[] list
+    # most top in the list
+    case "$arg" in
+        amd) _W_gpu_vendor="dword:00001002"; _W_gpu_device="dword:000067df";;
+        nvidia) _W_gpu_vendor="dword:000010de"; _W_gpu_device="dword:000013c2";;
+        no) _W_gpu_vendor="-"; _W_gpu_device="-";;
+        *) w_die "Unexpected argument '$arg'. Should be default/amd/nvidia";;
+    esac
+
+    echo "Forcing '$arg' GPU"
+    cat > "$W_TMP"/force_gpu.reg <<_EOF_
+REGEDIT4
+
+[HKEY_CURRENT_USER\\Software\\Wine\\Direct3D]
+"VideoPciVendorID"=${_W_gpu_vendor}
+"VideoPciDeviceID"=${_W_gpu_device}
+_EOF_
+
+    w_try_regedit "$W_TMP_WIN"\\force_gpu.reg
+
+    unset _W_gpu_vendor
+    unset _W_gpu_device
+}
+
+#----------------------------------------------------------------
+# Mac Driver settings
+
+w_metadata macdriver=mac settings \
+    title_bg="Включете драйвера на Mac - Quartz (по подразбиране)" \
+    title_uk="Увімкнути рідний Mac Quartz драйвер (за замовчуванням)" \
+    title="Enable the Mac native Quartz driver (default)"
+w_metadata macdriver=x11 settings \
+    title_bg="Изключете драйвера на Mac - Quartz и включете драйвера на X11" \
+    title_uk="Вимкнути рідний Mac Quartz драйвер та використовувати замість нього X11" \
+    title="Disable the Mac native Quartz driver, use X11 instead"
+
+load_macdriver()
+{
+    echo "Setting MacDriver to ${arg}"
+    cat > "${W_TMP}"/set-mac.reg <<_EOF_
+REGEDIT4
+
+[HKEY_CURRENT_USER\\Software\\Wine\\Drivers]
+"Graphics"="${arg}"
+
+_EOF_
+    w_try_regedit "${W_TMP}"/set-mac.reg
+}
+
+#----------------------------------------------------------------
+
 w_metadata mackeyremap=both settings \
     title_bg="Включете преназначаването на клавишите Opt->Alt и Cmd->Ctrl за драйвера на Mac" \
     title="Enable mapping opt->alt and cmd->ctrl keys for the Mac native driver"
