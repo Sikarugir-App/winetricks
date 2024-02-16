@@ -15139,6 +15139,18 @@ load_dxwnd()
 
 #----------------------------------------------------------------
 
+w_metadata ea_app dlls \
+    title="EA-App" \
+    homepage="https://www.ea.com/ea-app" \
+    publisher="EA" \
+    year="2022" \
+    media="download"
+
+load_ea_app()
+{
+    w_call eadesktop
+}
+
 w_metadata eadesktop apps \
     title="EA Desktop app" \
     publisher="EA" \
