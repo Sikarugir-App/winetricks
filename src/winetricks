@@ -7349,6 +7349,32 @@ load_dxtrans()
 
 #----------------------------------------------------------------
 
+w_metadata d9vk dlls \
+    title="Vulkan-based D3D9 implementation for Wine" \
+    publisher="Philip Rebohle / CodeWeavers / Robin Kertels" \
+    year="2021" \
+    media="download" \
+    file1="../d9vk/d9vk-macOS-async-v1.10.3-20240229.tar.gz" \
+    homepage="https://github.com/The-Wineskin-Project/d9vk" \
+
+load_d9vk()
+{
+    w_package_unsupported_win32
+
+    if w_wine_version_in ,7.6 ; then
+        w_die "${W_PACKAGE} requires wine version 7.7 (or newer)"
+    fi
+
+    w_download_to d9vk https://github.com/The-Wineskin-Project/d9vk/releases/download/v1.10.3-20240229/d9vk-macOS-async-v1.10.3-20240229.tar.gz bb3bd16cc93e5ca8ee3f6f7df31edf8950a0db4421d53f4ce72e28a681d1cfdf
+
+    w_try_cd "${W_TMP}"
+    w_try tar -xf "${W_CACHE}/d9vk/d9vk-macOS-async-v1.10.3-20240229.tar.gz"
+    w_try_cp_dll "${W_TMP}"/d9vk-macOS-async-v1.10.3-20240229/x32/d3d9.dll     "${W_SYSTEM32_DLLS}"/d3d9.dll
+    w_try_cp_dll "${W_TMP}"/d9vk-macOS-async-v1.10.3-20240229/x64/d3d9.dll     "${W_SYSTEM64_DLLS}"/d3d9.dll
+
+    w_override_dlls native,builtin d3d9
+}
+
 w_metadata dxvk dlls \
     title="Vulkan-based D3D10/D3D11 implementation for Wine" \
     publisher="Philip Rebohle / CodeWeavers" \
