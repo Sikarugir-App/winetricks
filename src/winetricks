@@ -6199,6 +6199,7 @@ load_d2gl()
 {
     w_download https://github.com/bayaraa/d2gl/releases/download/v1.3.3/D2GL.v1.3.3.zip 33862ab74f314f9e72f992dd8850f8bfd0d6533ef0e4a0015867fc6524125ea2
     w_try_unzip "${W_PROGRAMS_X86_UNIX}/Diablo II" "${W_CACHE}/${W_PACKAGE}/${file1}"
+    w_try rm -rf "${W_PROGRAMS_X86_UNIX}/Diablo II/ddraw.dll"
 
     w_warn "Run Diablo II using game.exe -3dfx"
 }
