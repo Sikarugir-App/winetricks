@@ -16044,6 +16044,36 @@ load_qqintl()
 
 #----------------------------------------------------------------
 
+w_metadata rockstar apps \
+    title="Rockstar Games Launcher" \
+    publisher="Rockstar" \
+    year="2019" \
+    media="download" \
+    file1="Rockstar-Games-Launcher.exe" \
+    installed_exe1="${W_PROGRAMS_WIN}/Rockstar Games/Launcher/Launcher.exe" \
+    homepage="https://socialclub.rockstargames.com/rockstar-games-launcher"
+
+load_rockstar()
+{
+    if w_wine_version_in ,8.0 ; then
+        w_die "${W_PACKAGE} requires wine version 8.0.1 (or newer)"
+    fi
+
+    w_download https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe
+
+    if [ -n "${W_OPT_UNATTENDED}" ]; then
+        w_warn "There's no silent install for Rockstar Games Launcher"
+    fi
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+    # Disabling LauncherPatcher.exe to stop it launching after install is complete.
+    # Not using w_try as the installer will give status 5 due to not finding Launcher.exe.
+    # Make AutoHotkey script to automate installation.
+    WINEDLLOVERRIDES=LauncherPatcher.exe=d "${WINE}" "${file1}" > /dev/null 2>&1
+}
+
+#----------------------------------------------------------------
+
 w_metadata safari apps \
     title="Safari" \
     publisher="Apple" \
