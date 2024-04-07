@@ -14501,6 +14501,13 @@ load_battle_net()
 {
     w_download "https://www.battle.net/download/getInstallerForGame?os=win&gameProgram=BATTLENET_APP&version=Live" "" "Battle.net-Setup.exe"
 
+    # Installer will fail quickly without this with (wine-staging-9.6)
+    #but it then fails later with "The Battle.net desktop app requires the Windows Secondary Logon service to be enabled."
+    # Battle.net does work in CX24.0.1 so maybe it contains some additinal patchset?
+    if w_workaround_wine_bug 32342; then
+        w_call corefonts
+    fi
+
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
     w_try "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+ --lang=enUS --installpath="${W_PROGRAMS_X86_WIN}\\Battle.net"} > /dev/null 2>&1
     w_wineserver -k
