@@ -16433,6 +16433,14 @@ load_ubisoftconnect()
     w_download https://ubistatic3-a.akamaihd.net/orbit/launcher_installer/UbisoftConnectInstaller.exe
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
 
+    if w_workaround_wine_bug 32342; then
+        w_call corefonts
+    fi
+
+    if w_workaround_wine_bug 54948; then
+        w_call d3dcompiler_47
+    fi
+
     # NSIS installer
     w_try "${WINE}" UbisoftConnectInstaller.exe ${W_OPT_UNATTENDED:+ /S}
 }
