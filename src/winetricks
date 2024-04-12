@@ -14724,7 +14724,7 @@ load_eadesktop()
         w_die "${W_PACKAGE} requires wine version 7.7 (or newer)"
     fi
 
-    if w_workaround_wine_bug 32342 "QtWebEngineProcess.exe crashes when updating or launching EALauncher (missing fonts)"; then
+    if w_workaround_wine_bug 32342 "EACefSubProcess crashes when updating or launching EALauncher (missing fonts)"; then
         w_call corefonts
     fi
 
