@@ -14738,10 +14738,8 @@ load_eadesktop()
 
     w_override_dlls disabled EACrashReporter.exe
 
-    if [ -n "${D3DMETALPATH}" ]; then
-        w_warn "D3DMetal or DXVK is required for EALauncher to render"
-        w_call dxvk
-    fi
+    # D3DMetal or DXVK is required for EALauncher to render.
+    w_call dxvk
 
     w_download https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe
 
