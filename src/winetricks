@@ -14728,10 +14728,6 @@ load_eadesktop()
     #    w_call corefonts
     #fi
 
-    if w_workaround_wine_bug 36863 "Disabling In-game overlay."; then
-        w_override_dlls disabled IGOProxy32.exe
-    fi
-
     if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
         w_call d3dcompiler_47
     fi
