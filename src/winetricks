@@ -14734,8 +14734,8 @@ load_eadesktop()
 
     w_override_dlls disabled EACrashReporter.exe
 
-    if [ -n "${D3DMETALPATH}" ]; then
-        w_warn "D3DMetal or DXVK is required for EALauncher to render"
+    # requires D3DMetal or DXVK to render
+    if [ -z "${D3DMETALPATH}" ]; then
         w_call dxvk
     fi
 
