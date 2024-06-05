@@ -16383,10 +16383,6 @@ load_steam()
         w_override_app_dlls steamwebhelper.exe disabled libglesv2
     fi
 
-    if [ "$(uname -s)" = "Darwin" ] && w_workaround_wine_bug 49839 "Steamwebhelper.exe crashes when running Steam."; then
-        w_warn "Steam must be launched with -allosarches -cef-force-32bit -cef-disable-sandbox -cef-in-process-gpu -cef-disable-gpu"
-    fi
-
     if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
         w_call d3dcompiler_47
     fi
