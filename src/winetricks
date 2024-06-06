@@ -4620,7 +4620,13 @@ winetricks_set_wineprefix()
         if [ -z "${WINE_BIN}" ]; then
             WINE_BIN="$(command -v "${WINE}")"
         fi
-        _W_wine_binary_arch="$(winetricks_get_file_arch "${WINE_BIN}")"
+
+        if [ "$(uname -s)" = "Darwin" ]; then
+            _W_wine_binary_arch=x86_64
+        else
+            _W_wine_binary_arch="$(winetricks_get_file_arch "${WINE_BIN}")"
+        fi
+
         if [ -z "${_W_wine_binary_arch}" ]; then
             # wine might be a script calling a binary in Wine's bindir.
             if [ -z "${WINE_BINDIR}" ] && [ -x "${WINEBOOT_BIN}" ]; then
