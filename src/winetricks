@@ -4596,7 +4596,12 @@ winetricks_set_wineprefix()
         fi
         WINEBOOT_BIN="$(dirname "${WINESERVER_BIN}")/$(basename "${WINESERVER_BIN}"|sed 's,wineserver,wineboot,')"
 
-        _W_wineserver_binary_arch="$(winetricks_get_file_arch "${WINESERVER_BIN}")"
+        if [ "$(uname -s)" = "Darwin" ]; then
+            _W_wineserver_binary_arch=x86_64
+        else
+            _W_wineserver_binary_arch="$(winetricks_get_file_arch "${WINESERVER_BIN}")"
+        fi
+
         if [ -z "${_W_wineserver_binary_arch}" ]; then
             # wineserver might be a script calling a binary in Wine's bindir.
             if [ -z "${WINE_BINDIR}" ] && [ -x "${WINEBOOT_BIN}" ]; then
