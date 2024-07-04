@@ -16424,6 +16424,9 @@ load_ubisoftconnect()
         w_call d3dcompiler_47
     fi
 
+    # Only renders when set to Windows 7
+    w_set_winver win7
+
     # NSIS installer
     w_try "${WINE}" UbisoftConnectInstaller.exe ${W_OPT_UNATTENDED:+ /S}
 }
