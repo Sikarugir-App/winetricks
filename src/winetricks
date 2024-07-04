@@ -12120,11 +12120,6 @@ load_vcrun2019()
 
     w_download https://aka.ms/vs/16/release/vc_redist.x86.exe 49545cb0f6499c4a65e1e8d5033441eeeb4edfae465a68489a70832c6a4f6399
 
-    if w_workaround_wine_bug 50894 "Working around failing wusa.exe lookup via C:\windows\SysNative"; then
-        w_store_winver
-        w_set_winver winxp
-    fi
-
     # Setup will refuse to install msvcp140 because the builtin's version number is higher, so manually replace it
     # See https://bugs.winehq.org/show_bug.cgi?id=57518
     w_try_cabextract --directory="${W_TMP}/win32"  "${W_CACHE}"/"${W_PACKAGE}"/vc_redist.x86.exe -F 'a10'
@@ -12167,8 +12162,6 @@ load_vcrun2019()
     esac
 
     w_call ucrtbase2019
-
-    w_restore_winver
 }
 
 #----------------------------------------------------------------
