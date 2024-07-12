@@ -5933,29 +5933,20 @@ w_metadata d3dcompiler_42 dlls \
     publisher="Microsoft" \
     year="2010" \
     media="download" \
-    file1="../directx9/directx_Jun2010_redist.exe" \
+    file1="d3dcompiler_42_32.dll" \
     installed_file1="${W_SYSTEM32_DLLS_WIN}/d3dcompiler_42.dll"
 
 load_d3dcompiler_42()
 {
-    dllname=d3dcompiler_42
+    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_42/d3dcompiler_42_32.dll 6c976311406c23aa71018d274da0ecdef43b6e3a3b0b01e941a5e8e4e974386c
+    w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_42_32.dll" "${W_SYSTEM32_DLLS}/d3dcompiler_42.dll"
 
-    helper_directx_Jun2010
-
-    w_try_cabextract -d "${W_TMP}" -L -F "*${dllname}*x86*" "${W_CACHE}"/directx9/${DIRECTX_NAME}
-    for x in "${W_TMP}"/*.cab; do
-        w_try_cabextract -d "${W_SYSTEM32_DLLS}" -L -F "${dllname}.dll" "${x}"
-    done
-
-    if test "${W_ARCH}" = "win64"; then
-        w_try_cabextract -d "${W_TMP}" -L -F "*${dllname}*x64*" "${W_CACHE}"/directx9/${DIRECTX_NAME}
-
-        for x in "${W_TMP}"/*x64.cab; do
-            w_try_cabextract -d "${W_SYSTEM64_DLLS}" -L -F "${dllname}.dll" "${x}"
-        done
+    if [ "${W_ARCH}" = "win64" ]; then
+        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_42/d3dcompiler_42.dll 4d61e843aa86d8801a60d01b8e872379c5b2503795a2bcbe6141978396ade00b
+        w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_42.dll" "${W_SYSTEM64_DLLS}/d3dcompiler_42.dll"
     fi
 
-    w_override_dlls native ${dllname}
+    w_override_dlls native d3dcompiler_42
 }
 
 #----------------------------------------------------------------
