@@ -15513,56 +15513,6 @@ load_wmp11()
 # settings
 #######################
 
-####
-# settings->desktop
-#----------------------------------------------------------------
-w_metadata graphics=wayland settings \
-    title_bg="Задайте графичния драйвер Wayland" \
-    title_uk="Встановити графічний драйвер Wayland" \
-    title_ru="Установить графический драйвер Wayland" \
-    title="Set graphics driver to Wayland"
-w_metadata graphics=x11 settings \
-    title_bg="Задайте графичния драйвер X11" \
-    title_uk="Встановити графічний драйвер X11" \
-    title_ru="Установить графический драйвер X11" \
-    title="Set graphics driver to X11"
-w_metadata graphics=mac settings \
-    title_bg="Задайте графичния драйвер Quartz (за macOS)" \
-    title_uk="Встановити графічний драйвер Quartz (для macOS)" \
-    title_ru="Установить графический драйвер Quartz (для macOS)" \
-    title="Set graphics driver to Quartz (for macOS)"
-w_metadata graphics=default settings \
-    title_bg="Задайте графичния драйвер по подразбиране" \
-    title_uk="Встановити графічний драйвер за замовчуванням" \
-    title_ru="Установить графический драйвер по умолчанию" \
-    title="Set graphics driver to default"
-
-load_graphics() {
-    case "$1" in
-        default )
-            arg='-'
-            ;;
-        wayland )
-            arg='"wayland,x11"'
-            ;;
-        mac )
-            arg='"mac,x11"'
-            ;;
-        * )
-            arg="\"$1\""
-            ;;
-    esac
-    echo "Setting graphics driver to ${arg}"
-    cat > "${W_TMP}"/set-graphics.reg <<_EOF_
-REGEDIT4
-
-[HKEY_CURRENT_USER\\Software\\Wine\\Drivers]
-"Graphics"=${arg}
-
-_EOF_
-    w_try_regedit "${W_TMP_WIN}"\\set-graphics.reg
-}
-
 #----------------------------------------------------------------
 # DirectInput settings
 
