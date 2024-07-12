@@ -5998,21 +5998,17 @@ w_metadata d3dcompiler_46 dlls \
     publisher="Microsoft" \
     year="2010" \
     media="download" \
-    file1="../directx9/directx_Jun2010_redist.exe" \
+    file1="d3dcompiler_46_32.dll" \
     installed_file1="${W_SYSTEM32_DLLS_WIN}/d3dcompiler_46.dll"
 
 load_d3dcompiler_46()
 {
-    # See https://bugs.winehq.org/show_bug.cgi?id=50350#c13
-
-    w_download http://download.microsoft.com/download/F/1/3/F1300C9C-A120-4341-90DF-8A52509B23AC/standalonesdk/Installers/2630bae9681db6a9f6722366f47d055c.cab
-    w_try_cabextract -d "${W_TMP}" -L -F "fil47ed91e900f4b9d9659b66a211b57c39" "${W_CACHE}/${W_PACKAGE}/2630bae9681db6a9f6722366f47d055c.cab"
-    w_try mv "${W_TMP}/fil47ed91e900f4b9d9659b66a211b57c39" "${W_SYSTEM32_DLLS}/d3dcompiler_46.dll"
+    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_46/d3dcompiler_46_32.dll 58d9a00888af693b2a5222fe74cfded32ce83e74f85b474f1cbe5987217b5a9d
+    w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_46_32.dll" "${W_SYSTEM32_DLLS}/d3dcompiler_46.dll"
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_download http://download.microsoft.com/download/F/1/3/F1300C9C-A120-4341-90DF-8A52509B23AC/standalonesdk/Installers/61d57a7a82309cd161a854a6f4619e52.cab
-        w_try_cabextract -d "${W_TMP}" -L -F "fil8c20206095817436f8df4a711faee5b7" "${W_CACHE}/${W_PACKAGE}/61d57a7a82309cd161a854a6f4619e52.cab"
-        w_try mv "${W_TMP}/fil8c20206095817436f8df4a711faee5b7" "${W_SYSTEM64_DLLS}/d3dcompiler_46.dll"
+        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_46/d3dcompiler_46.dll b1a06f7aa52439a948a152bfd3301d9b595c78969bb77c9741bba935139f58a0
+        w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_46.dll" "${W_SYSTEM64_DLLS}/d3dcompiler_46.dll"
     fi
 
     w_override_dlls native d3dcompiler_46
