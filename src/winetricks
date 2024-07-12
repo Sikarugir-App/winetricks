@@ -14790,9 +14790,9 @@ load_eadesktop()
         w_die "${W_PACKAGE} requires wine version 7.7 (or newer)"
     fi
 
-    if w_workaround_wine_bug 32342 "EACefSubProcess crashes when updating or launching EALauncher (missing fonts)"; then
-        w_call corefonts
-    fi
+    #if w_workaround_wine_bug 32342 "EACefSubProcess crashes when updating or launching EALauncher (missing fonts)"; then
+    #    w_call corefonts
+    #fi
 
     if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
         w_call d3dcompiler_47
@@ -16044,9 +16044,9 @@ _EOF_
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
     w_try "${WINE}" "${file1}" /NoLaunch ${W_OPT_UNATTENDED:+/SILENT}
 
-    if w_workaround_wine_bug 32342 "QtWebEngineProcess.exe crashes when updating or launching Origin (missing fonts)"; then
-        w_call corefonts
-    fi
+    #if w_workaround_wine_bug 32342 "QtWebEngineProcess.exe crashes when updating or launching Origin (missing fonts)"; then
+    #    w_call corefonts
+    #fi
 
     if w_workaround_wine_bug 36863 "Disabling Origin In-game overlay."; then
         w_override_dlls disabled igoproxy.exe
@@ -16425,9 +16425,9 @@ load_steam()
 
     w_try "${WINE}" SteamSetup.exe ${W_OPT_UNATTENDED:+ /S}
 
-    if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
-        w_call corefonts
-    fi
+    #if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
+    #    w_call corefonts
+    #fi
 
     if w_workaround_wine_bug 44985 "Disabling libglesv2 to make Store and Library function correctly." 7.0,; then
         w_override_app_dlls steamwebhelper.exe disabled libglesv2
