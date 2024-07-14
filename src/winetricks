@@ -16440,6 +16440,8 @@ load_ubisoftconnect()
 
     # NSIS installer
     w_try "${WINE}" UbisoftConnectInstaller.exe ${W_OPT_UNATTENDED:+ /S}
+
+    w_set_app_winver upc.exe win7
 }
 
 #----------------------------------------------------------------
