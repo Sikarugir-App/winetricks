@@ -14719,6 +14719,33 @@ load_hhw()
 
 #----------------------------------------------------------------
 
+w_metadata hoyoplay apps \
+    title="HoYoPlay" \
+    publisher="HoYoLAB" \
+    year="2024" \
+    media="download" \
+    file1="hyp_global_setup.exe" \
+    installed_file1="${W_PROGRAMS_WIN}/HoYoPlay/launcher.exe" \
+    homepage="https://hoyoplay.hoyoverse.com/"
+
+load_hoyoplay()
+{
+    w_download "https://ys-api-os.mihoyo.com/event/download_porter/link/hyp_global/hyphoyoverse/default" "" "hyp_global_setup.exe"
+
+    if [ -n "${W_OPT_UNATTENDED}" ]; then
+        w_try_7z "${W_PROGRAMS_UNIX}"/HoYoPlay "${W_CACHE}/${W_PACKAGE}"/hyp_global_setup.exe -aoa
+        w_try cp -f "${W_PROGRAMS_UNIX}"/HoYoPlay/*.*.*.*/launcher.exe "${W_PROGRAMS_UNIX}"/HoYoPlay/launcher.exe
+        w_call vcrun2022
+    else
+        w_try_cd "${W_CACHE}/${W_PACKAGE}"
+        # Disabling launcher.exe to stop it launching after install is complete.
+        # Not using w_try as the installer will give status 5 due to not finding Launcher.exe.
+        WINEDLLOVERRIDES=launcher.exe=d "${WINE}" "${file1}" > /dev/null 2>&1
+    fi
+}
+
+#----------------------------------------------------------------
+
 w_metadata iceweasel apps \
     title="GNU Icecat 31.7.0" \
     publisher="GNU Foundation" \
