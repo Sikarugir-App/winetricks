@@ -12577,21 +12577,16 @@ w_metadata ucrtbase2019 dlls \
 
 load_ucrtbase2019()
 {
-    w_override_dlls native,builtin ucrtbase
-
-    w_download https://github.com/The-Wineskin-Project/winetricks-archive-mirror/releases/download/ucrtbase2019/VC_redist.x86.exe 14563755ac24a874241935ef2c22c5fce973acb001f99e524145113b2dc638c1
-
-    w_try_cabextract --directory="${W_TMP}/win32"  "${W_CACHE}"/"${W_PACKAGE}"/VC_redist.x86.exe -F 'a10'
-    w_try_cabextract --directory="${W_SYSTEM32_DLLS}" "${W_TMP}/win32/a10" -F 'ucrtbase.dll'
+    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/ucrtbase2019/ucrtbase_32.dll 66a93e40dd6721ded8a32d407d2c5fc291edaf74485ccbc848b6804efebd6dba
+    w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/ucrtbase_32.dll" "${W_SYSTEM32_DLLS}/ucrtbase.dll"
 
     case "${W_ARCH}" in
         win64)
-            w_download https://github.com/The-Wineskin-Project/winetricks-archive-mirror/releases/download/ucrtbase2019/VC_redist.x64.exe 52b196bbe9016488c735e7b41805b651261ffa5d7aa86eb6a1d0095be83687b2
-
-            w_try_cabextract --directory="${W_TMP}/win64"  "${W_CACHE}"/"${W_PACKAGE}"/VC_redist.x64.exe -F 'a10'
-            w_try_cabextract --directory="${W_SYSTEM64_DLLS}" "${W_TMP}/win64/a10" -F 'ucrtbase.dll'
-            ;;
+            w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/ucrtbase2019/ucrtbase.dll 51cbbde17a768930300236facd9738f54b7801e6715771ff8af90bfbe3fad44f
+            w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/ucrtbase.dll" "${W_SYSTEM64_DLLS}/ucrtbase.dll"
     esac
+
+    w_override_dlls native,builtin ucrtbase
 }
 
 #----------------------------------------------------------------
