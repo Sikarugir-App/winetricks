@@ -17662,6 +17662,10 @@ w_metadata videomemorysize=2048 settings \
     title_bg="Кажете на Wine, че видеокартата има 2048 МБ памет" \
     title_uk="Повідомити Wine про 2048МБ відеопам'яті" \
     title="Tell Wine your video card has 2048MB RAM"
+w_metadata videomemorysize=4096 settings \
+    title_bg="Кажете на Wine, че видеокартата има 4096 МБ памет" \
+    title_uk="Повідомити Wine про 4096МБ відеопам'яті" \
+    title="Tell Wine your video card has 4096MB RAM"
 
 load_videomemorysize()
 {
