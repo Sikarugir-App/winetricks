@@ -14859,6 +14859,43 @@ load_emu8086()
 
 #----------------------------------------------------------------
 
+w_metadata epicgames apps \
+    title="Epic Games Launcher" \
+    publisher="Epic" \
+    year="2018" \
+    media="download" \
+    file1="EpicGamesLauncherInstaller.msi" \
+    installed_exe1="${W_PROGRAMS_X86_WIN}/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe" \
+    homepage="https://store.epicgames.com"
+
+load_epicgames()
+{
+    # crossover-preview-20240913 (wine-9.16)
+    if w_wine_version_in ,9.15 ; then
+        w_die "${title} requires wine version 9.16 (or newer)"
+    fi
+
+    if w_workaround_wine_bug 48404 ""; then
+        w_warn "Free game notifications and other pop up messages can't be closed and"
+        w_warn "can cause significant lag. Make sure you disable them in settings."
+    fi
+
+    #if w_workaround_wine_bug 55824 "Unable to enter text in ${title}"; then
+    #    w_call corefonts
+    #fi
+
+    # Ubisoft Connect
+    w_set_app_winver upc.exe win7
+
+    w_download "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi" "" "EpicGamesLauncherInstaller.msi"
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+
+    # https://silentinstallhq.com/epic-games-launcher-silent-install-how-to-guide/
+    w_try "${WINE}" msiexec /i EpicGamesLauncherInstaller.msi ${W_OPT_UNATTENDED:+/qb}
+}
+
+#----------------------------------------------------------------
+
 w_metadata ev3 apps \
     title="Lego Mindstorms EV3 Home Edition" \
     publisher="Lego" \
