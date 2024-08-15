@@ -15857,6 +15857,29 @@ load_procexp()
 
 #----------------------------------------------------------------
 
+w_metadata paradox apps \
+    title="Paradox Launcher V.2" \
+    publisher="paradoxinteractive" \
+    year="2018" \
+    media="download" \
+    file1="paradox-launcher-installer.msi" \
+    installed_exe1="${W_PROGRAMS_WIN}/Paradox Interactive/launcher/bootstrapper-v2.exe" \
+    homepage="https://www.paradoxinteractive.com/"
+
+load_paradox()
+{
+    if w_wine_version_in ,8.0 ; then
+        w_die "${W_PACKAGE} requires wine version 8.0.1 (or newer)"
+    fi
+
+    w_download "https://launcher.paradoxinteractive.com/v2/paradox-launcher-installer-windows" "" "paradox-launcher-installer.msi"
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+
+    w_try "${WINE}" msiexec /i paradox-launcher-installer.msi ${W_OPT_UNATTENDED:+/qb}
+}
+
+#----------------------------------------------------------------
+
 w_metadata protectionid apps \
     title="Protection ID" \
     publisher="CDKiLLER & TippeX" \
