@@ -14876,11 +14876,10 @@ load_gog_galaxy()
     #w_call dotnet48
     #w_call dxvk
 
-    # Needs function Rethrow_future_exception implementation in msvcp140.dll
-    # https://github.com/wine-mirror/wine/commit/389fbcf961732528d8cc4351e299256ae5782b96
-    if w_wine_version_in ,8.5 ; then
-        w_call vcrun2022
-    fi
+    w_call vcrun2010
+    w_call vcrun2012
+    w_call vcrun2013
+    w_call vcrun2022
 
     # crossover-preview-20240808 (wine-9.13)
     if w_workaround_wine_bug 44985 "" 9.12,; then
