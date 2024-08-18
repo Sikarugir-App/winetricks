@@ -14599,6 +14599,11 @@ load_eadesktop()
         w_call dxvk
     fi
 
+    w_call vcrun2010
+    w_call vcrun2012
+    w_call vcrun2013
+    w_call vcrun2022
+
     w_override_dlls disabled EACrashReporter.exe
 
     w_download https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe 2270592e00263b7f9af84652f7fc09449066f0e7395a4a37678e134ae46791fb
