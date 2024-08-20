@@ -6159,7 +6159,7 @@ w_metadata cnc_ddraw dlls \
     publisher="CnCNet" \
     year="2021" \
     media="download" \
-    file1="cnc-ddraw-v6.7.0.0.zip" \
+    file1="cnc-ddraw-v6.8.0.0.zip" \
     installed_file1="${W_SYSTEM32_DLLS_WIN}/Shaders/readme.txt"
 
 load_cnc_ddraw()
@@ -6184,8 +6184,9 @@ load_cnc_ddraw()
     # 2024/05/23 https://github.com/FunkyFr3sh/cnc-ddraw/releases/download/v6.5.0.0/cnc-ddraw.zip
     # 2024/06/07 https://github.com/FunkyFr3sh/cnc-ddraw/releases/download/v6.6.0.0/cnc-ddraw.zip
     # 2024/07/10 https://github.com/FunkyFr3sh/cnc-ddraw/releases/download/v6.7.0.0/cnc-ddraw.zip
+    # 2024/08/20 https://github.com/FunkyFr3sh/cnc-ddraw/releases/download/v6.8.0.0/cnc-ddraw.zip
 
-    w_download https://github.com/FunkyFr3sh/cnc-ddraw/releases/download/v6.7.0.0/cnc-ddraw.zip f47d6e6887e4e14785e778ea30096a87e7db302675b7f2159b5315f0c081727e cnc-ddraw-v6.7.0.0.zip
+    w_download https://github.com/FunkyFr3sh/cnc-ddraw/releases/download/v6.8.0.0/cnc-ddraw.zip 61002fcc8bc117a0bd95aabda275104496f578f9711760ac8451dc02d6471f82 cnc-ddraw-v6.8.0.0.zip
     w_try_unzip "${W_SYSTEM32_DLLS}" "${W_CACHE}/${W_PACKAGE}/${file1}"
 
     w_override_dlls native,builtin ddraw
