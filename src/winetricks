@@ -16501,10 +16501,8 @@ load_wm9codecs()
 {
     # Note: must install WMP9 or 10 first, or installer will complain and abort.
 
-    if w_wine_version_in ,8.99 ; then
-        # The Microsoft page says that is supports XP, but in both 32/64 prefixes, it gives a message box saying it requires win98/winme/win2k
-        w_package_unsupported_win64
-    fi
+    # The Microsoft page says that is supports XP, but in both 32/64 prefixes, it gives a message box saying it requires win98/winme/win2k
+    w_package_unsupported_win64
 
     # See https://www.microsoft.com/en-us/download/details.aspx?id=507
     # Used by direct calls from load_wmp9, so we have to specify cache directory.
@@ -16559,128 +16557,9 @@ load_wmp9()
     w_try_cabextract "${W_CACHE}/${W_PACKAGE}/MPSetup.exe"
     if [ "${W_ARCH}" = "win64" ]; then
         # https://github.com/Winetricks/winetricks/issues/1087
-        w_try sed -i='' 's/IsWow64Process/IsNow64Process/' setup_wm.exe
+        w_try sed -i 's/IsWow64Process/IsNow64Process/' setup_wm.exe
         w_try "${WINE}" setup_wm.exe ${W_OPT_UNATTENDED:+/Quiet}
-        w_try_cp_dll "${W_TMP}"/9SeriesDefault.wmz "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/9SeriesDefault_.wmz "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/9xmigrat.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/advpack.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/asferror.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/blackbox.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/CEWMDM.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Compact.wmz "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/control.xml "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/custsat.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/drm.cat "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/drm.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/DRMClien.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/DrmStor.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/drmv2clt.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/dw15.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/dwintl.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/engsetup.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/eula.txt "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/fhg.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/iexpress.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/l3codeca.acm "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/LAPRXY.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/logagent.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/migrate.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/migrate.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MP43DMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MP4SDMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MPG4DMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/mpvis.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/msdmo.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/msnetobj.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/msoobci.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MsPMSNSv.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MsPMSP.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MSSCP.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/MSWMDM.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/mymusic.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/npdrmv2.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/npdrmv2.zip "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/NPWMSDrm.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/PidGen.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst1.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst10.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst11.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst12.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst13.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst14.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst15.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst2.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst3.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst4.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst5.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst6.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst7.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst8.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Plylst9.wpl "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/plyr_err.chm "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/qasf.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/QuickSilver.wmz "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/Revert.wmz "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/roxio.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/rsl.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/setup_wm.cat "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/setup_wm.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/setup_wm.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/skins.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/skinsmui.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/unicows.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/unregmp2.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/w95inf16.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/w95inf32.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wm1033.lng "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMADMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMADMOE.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMASF.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmburn.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmburn.rxc "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmdm.cat "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmdm.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMDMLOG.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMDMPS.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmerror.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmexpack.cat "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmexpack.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMFSDK.cat "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMFSDK.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmidx.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMNetMgr.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmp.cat "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmp.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmp.inf "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmp.ocx "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpasf.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpband.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpcd.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpcore.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpdxm.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmplayer.adm "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmplayer.chm "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmplayer.exe "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmplayer.exe "${W_PROGRAMS_X86_UNIX}/Windows Media Player"/
-        w_try_cp_dll "${W_TMP}"/wmploc.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMPNS.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpns.jar "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpshell.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/wmpui.dll "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMSDMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMSDMOE2.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMSPDMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMSPDMOE.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMVCORE.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMVDMOD.DLL "${W_SYSTEM32_DLLS}"/
-        w_try_cp_dll "${W_TMP}"/WMVDMOE2.DLL "${W_SYSTEM32_DLLS}"/
-        ln -s "${W_SYSTEM32_DLLS}"/WMVCORE.DLL "${W_SYSTEM32_DLLS}"/wmvcore.dll
-        if w_wine_version_in ,8.99 ; then
-            w_warn "wm9codecs is not supported in win64 prefixes. If you need those codecs, reinstall wmp9 in a 32-bit prefix."
-        else
-            load_wm9codecs
-        fi
+        w_warn "wm9codecs is not supported in win64 prefixes. If you need those codecs, reinstall wmp9 in a 32-bit prefix."
     else
         w_try "${WINE}" setup_wm.exe ${W_OPT_UNATTENDED:+/Quiet}
         load_wm9codecs
