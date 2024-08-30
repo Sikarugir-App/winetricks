@@ -16138,6 +16138,10 @@ w_metadata origin apps \
 
 load_origin()
 {
+    if w_wine_version_in ,7.6 ; then
+        w_die "${W_PACKAGE} requires wine version 7.7 (or newer)"
+    fi
+
     w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/origin/OriginSetup.exe ed6ee5174f697744ac7c5783ff9021da603bbac42ae9836cd468d432cadc9779
     w_download_to origin https://github.com/p0358/Fuck_off_EA_App/releases/download/v3/version.dll 6c2df238a5cbff3475527aa7adf1d8b76d4d2d1a33a6d62edd4749408305c2be version_v3.dll
 
@@ -16198,7 +16202,6 @@ REGEDIT4
 
 _EOF_
     w_try_regedit "${W_TMP}"/ea-app.reg
-
 }
 
 #----------------------------------------------------------------
