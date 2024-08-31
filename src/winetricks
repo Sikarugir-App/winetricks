@@ -15868,14 +15868,14 @@ w_metadata rockstar apps \
 
 load_rockstar()
 {
-    if w_wine_version_in ,8.0 && [ -n "${D3DMETALPATH}" ] ; then
-        w_die "${W_PACKAGE} requires wine version 8.0.1 (or newer) when using D3DMetal"
+    if w_wine_version_in ,8.0; then
+        w_die "${title} requires wine version 8.0.1 (or newer) when using D3DMetal"
     fi
 
     w_download https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe
 
     if [ -n "${W_OPT_UNATTENDED}" ]; then
-        w_warn "There's no silent install for Rockstar Games Launcher"
+        w_warn "There's no silent install for ${title}"
     fi
 
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
@@ -15883,6 +15883,13 @@ load_rockstar()
     # Not using w_try as the installer will give status 5 due to not finding Launcher.exe.
     # Make AutoHotkey script to automate installation.
     WINEDLLOVERRIDES=LauncherPatcher.exe=d "${WINE}" "${file1}" > /dev/null 2>&1
+
+    w_try_cd "${W_PROGRAMS_UNIX}/Rockstar Games/Launcher"
+    w_try "${WINE}" LauncherPatcher.exe
+    w_wineserver -k
+
+    w_try_cd "${W_PROGRAMS_UNIX}/Rockstar Games/Launcher/Redistributables/SocialClub"
+    w_try "${WINE}" Social-Club-Setup.exe
 }
 
 #----------------------------------------------------------------
