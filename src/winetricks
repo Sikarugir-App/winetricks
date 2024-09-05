@@ -14846,18 +14846,34 @@ load_foobar2000()
 #----------------------------------------------------------------
 
 w_metadata gog_galaxy apps \
-    title="GOG Galaxy v2.0" \
-    publisher="GOG" \
-    year="2020" \
-    media="manual_download" \
-    file1="setup_galaxy_2.0.76.59.exe" \
-    installed_exe1="${W_PROGRAMS_X86_WIN}/GOG Galaxy/GalaxyClient.exe" \
-    homepage="https://www.gog.com"
+    title="Stub" \
+    media="download"
 
 load_gog_galaxy()
 {
+    w_call galaxy
+}
+
+w_metadata galaxy apps \
+    title="GOG Galaxy v2.0" \
+    publisher="GOG" \
+    year="2020" \
+    media="download" \
+    file1="setup_galaxy_2.0.77.22.exe" \
+    installed_exe1="${W_PROGRAMS_X86_WIN}/GOG Galaxy/GalaxyClient.exe" \
+    homepage="https://www.gog.com"
+
+load_galaxy()
+{
+    if w_wine_version_in ,8.0 ; then
+        w_die "${title} requires wine version 8.0.1 (or newer)"
+    fi
+
+    # crossover-preview-20240808 (wine-9.13)
+    w_package_broken "https://www.codeweavers.com/compatibility/crossover/gog-galaxy" 8.0.2 9.13
+
     # Find latest version from https://remote-config.gog.com/components/webinstaller?component_version=2.0.0
-    w_download https://content-system.gog.com/open_link/download?path=/open/galaxy/client/2.0.76.59/setup_galaxy_2.0.76.59.exe a2d9a11cedd3202b7f9a0a1d56e176709206ac5cf2344f111dffdbb7aadb3727
+    w_download https://content-system.gog.com/open_link/download?path=/open/galaxy/client/2.0.77.22/setup_galaxy_2.0.77.22.exe 58c7ffd847589c924316c6b36f1aab11b6ced07af2a25e3092a0ca1fe2847ae7
 
     #w_call corefonts
     #w_call dotnet48
@@ -14868,22 +14884,44 @@ load_gog_galaxy()
     w_call vcrun2013
     w_call vcrun2022
 
+    w_override_dlls disabled GalaxyOverlay.exe
+
     # crossover-preview-20240808 (wine-9.13)
-    if w_workaround_wine_bug 44985 "" 9.12,; then
+    if w_workaround_wine_bug 44985 "${title} doesn't render with Angle" 9.12,; then
         w_override_app_dlls GalaxyClient.exe disabled libglesv2
         w_override_app_dlls "GalaxyClient Helper.exe" disabled libglesv2
         w_override_app_dlls "GOG Galaxy Notifications Renderer.exe" disabled libglesv2
     fi
 
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
-    WINEDLLOVERRIDES=GalaxyClient.exe=b "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+/VERYSILENT /NORESTART} > /dev/null 2>&1
+    w_try "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+/VERYSILENT /NORESTART}
 
     # crossover-preview-20240808 (wine-9.13)
     if w_wine_version_in ,9.12 ; then
-        w_warn "The install function fails but you can get the offline installes via Extra menu"
-        w_warn "Legacy games won't launch, you need to launch them directly"
-        w_warn "Disable cloud saves or ${W_PACKAGE} will crash"
+        ln -sf "${W_PROGRAMS_X86_UNIX}/GOG Galaxy/Dependencies-Temp" "${W_PROGRAMS_X86_UNIX}/GOG Galaxy/Dependencies"
+        w_warn "Legacy games won't launch directly from ${title}"
+        w_warn "Disable cloud saves or ${title} will crash"
     fi
+}
+
+w_metadata galaxyupdater apps \
+    title="GOG Galaxy v2.0 Updater" \
+    publisher="GOG" \
+    year="2020" \
+    media="download" \
+    file1="GOG_Galaxy_2.0.exe" \
+    homepage="https://www.gog.com"
+
+load_galaxyupdater()
+{
+    w_download_to galaxy https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe
+
+    if [ -n "${W_OPT_UNATTENDED}" ]; then
+        w_warn "There's no silent install for ${title}"
+    fi
+
+    w_try_cd "${W_CACHE}/galaxy"
+    w_try "${WINE}" "${file1}"
 }
 
 #----------------------------------------------------------------
