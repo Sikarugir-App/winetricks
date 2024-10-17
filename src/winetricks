@@ -4698,8 +4698,13 @@ winetricks_set_wineprefix()
         W_PROGRAMW6432_UNIX="$(w_pathconv -u "${W_PROGRAMW6432_WIN}")"
 
         # 64-bit Windows has a second directory for program files
-        W_PROGRAMS_X86_WIN="${W_PROGRAMS_WIN} (x86)"
-        W_PROGRAMS_X86_UNIX="${W_PROGRAMS_UNIX} (x86)"
+        if w_wine_version_in ,7.6 ; then
+            W_PROGRAMS_X86_WIN="${W_PROGRAMS_WIN}"
+            W_PROGRAMS_X86_UNIX="${W_PROGRAMS_UNIX}"
+        else
+            W_PROGRAMS_X86_WIN="${W_PROGRAMS_WIN} (x86)"
+            W_PROGRAMS_X86_UNIX="${W_PROGRAMS_UNIX} (x86)"
+        fi
 
         W_COMMONFILES_X86_WIN="$(w_expand_env CommonProgramFiles\(x86\))"
         W_COMMONFILES_X86="$(w_pathconv -u "${W_COMMONFILES_X86_WIN}")"
