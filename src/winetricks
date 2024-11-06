@@ -16004,6 +16004,17 @@ load_sketchup()
 
 #----------------------------------------------------------------
 
+load_steam_download_client()
+{
+    w_try_cd "${W_PROGRAMS_X86_UNIX}/Steam"
+    "${WINE}" Steam.exe -forcesteamupdate -forcepackagedownload -overridepackageurl http://web.archive.org/web/20240601000000if_/media.steampowered.com/client -exitsteam > /dev/null 2>&1
+
+    cat > "${W_PROGRAMS_X86_UNIX}/Steam/steam.cfg" <<_EOF_
+BootStrapperInhibitAll=enable
+
+_EOF_
+}
+
 w_metadata steam apps \
     title="Steam" \
     publisher="Valve" \
@@ -16034,6 +16045,10 @@ load_steam()
 
     if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
         w_call d3dcompiler_47
+    fi
+
+    if w_wine_version_in ,9.0 ; then
+        load_steam_download_client
     fi
 
     w_override_dlls disabled EACrashReporter.exe
