@@ -6892,6 +6892,31 @@ load_cncnet_ra2()
 
 #----------------------------------------------------------------
 
+w_metadata dxgl dlls \
+    title="DXGL DirectX-to-OpenGL Wrapper" \
+    publisher="dxgldotorg" \
+    year="2011" \
+    media="download" \
+    file1="DXGL-0.5.23-win32.exe" \
+    installed_file1="${W_PROGRAMS_X86_WIN}/DXGL/dxglcfg.exe" \
+    homepage="https://github.com/dxgldotorg/dxgl"
+
+load_dxgl()
+{
+    w_download https://github.com/dxgldotorg/dxgl/releases/download/0.5.23/DXGL-0.5.23-win32.exe 8c498198dc21355938053c222d3e52416f4aafc6cd3187a8ac14919b68b0a413
+
+    #w_call vcrun2022
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+
+    # NSIS installer
+    w_try "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+ /S}
+
+    w_override_dlls native,builtin ddraw
+}
+
+#----------------------------------------------------------------
+
 w_metadata dxsdk_aug2006 apps \
     title="MS DirectX SDK, August 2006 (developers only)" \
     publisher="Microsoft" \
