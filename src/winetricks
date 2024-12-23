@@ -16215,6 +16215,21 @@ load_steam()
 
 #----------------------------------------------------------------
 
+w_metadata steam_remove_workaround apps \
+    title="Remove Steam workaround" \
+    installed_exe1="${W_PROGRAMS_X86_WIN}/Steam/steam.cfg"
+
+load_steam_remove_workaround()
+{
+    if w_wine_version_in ,8.99 ; then
+        w_die "${W_PACKAGE} requires wine version 9.0 (or newer)"
+    fi
+
+    w_try rm -f "${W_PROGRAMS_X86_UNIX}/Steam/steam.cfg"
+}
+
+#----------------------------------------------------------------
+
 w_metadata uplay dlls \
     title="Uplay" \
     publisher="Ubisoft" \
