@@ -15936,8 +15936,8 @@ w_metadata rockstar apps \
 
 load_rockstar()
 {
-    if w_wine_version_in ,8.0; then
-        w_die "${title} requires wine version 8.0.1 (or newer) when using D3DMetal"
+    if w_wine_version_in ,8.99; then
+        w_die "${title} requires wine version 9.0 (or newer)"
     fi
 
     w_download https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe
