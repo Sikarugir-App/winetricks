@@ -17370,6 +17370,43 @@ _EOF_
 
 #----------------------------------------------------------------
 
+w_metadata sdl_mapping_disable settings \
+    title="Disable SDL Controller Mapping"
+
+load_sdl_mapping_disable()
+{
+    "${WINE}" reg delete "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\winebus" /v "Enable SDL" /f || true
+    "${WINE}" reg delete "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\winebus" /v "Map Controllers" /f || true
+}
+
+w_metadata sdl_mapping_enable settings \
+    title="Enable SDL Controller Mapping (makes all controlles Xinput)"
+
+load_sdl_mapping_enable()
+{
+    "${WINE}" reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\winebus" /v "Enable SDL" /t REG_DWORD /d 0001 /f
+    "${WINE}" reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\winebus" /v "Map Controllers" /t REG_DWORD /d 0001 /f
+}
+
+w_metadata winebus_disablehidraw settings \
+    title="winebus DisableHidraw (makes all controllers Xinput)"
+
+load_winebus_disablehidraw()
+{
+    "${WINE}" reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\winebus" /v "DisableHidraw" /t REG_DWORD /d 0001 /f
+}
+
+w_metadata winebus_enablehidraw settings \
+    title="winebus EnableHidraw (DualSense controllers show normally)"
+
+load_winebus_enablehidraw()
+{
+    w_call sdl_mapping_disable
+    "${WINE}" reg delete "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\winebus" /v "DisableHidraw" /f || true
+}
+
+#----------------------------------------------------------------
+
 w_metadata videomemorysize=default settings \
     title_bg="Оставете на Wine да открие паметта на видеокартата" \
     title_uk="Дати можливість Wine визначити розмір відеопам'яті" \
