@@ -14807,9 +14807,6 @@ load_epicgames()
     #    w_call corefonts
     #fi
 
-    # Ubisoft Connect
-    w_set_app_winver upc.exe win7
-
     w_download "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi" "" "EpicGamesLauncherInstaller.msi"
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
 
@@ -16202,9 +16199,6 @@ load_steam()
 
     w_override_dlls disabled EACrashReporter.exe
 
-    # Ubisoft Connect
-    w_set_app_winver upc.exe win7
-
     # vulkandriverquery & vulkandriverquery64 crash a lot on macOS
     if [ "$(uname -s)" = "Darwin" ]; then
         w_override_dlls disabled vulkandriverquery.exe
@@ -16259,8 +16253,6 @@ load_ubisoftconnect()
 
     # NSIS installer
     w_try "${WINE}" UbisoftConnectInstaller.exe ${W_OPT_UNATTENDED:+ /S}
-
-    w_set_app_winver upc.exe win7
 }
 
 #----------------------------------------------------------------
