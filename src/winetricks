@@ -4937,6 +4937,8 @@ winetricks_init()
         export DYLD_FALLBACK_LIBRARY_PATH="${WINETRICKS_FALLBACK_LIBRARY_PATH}"
     fi
 
+    export MVK_CONFIG_LOG_LEVEL=0
+
     #---- Public Variables ----
 
     # Where application installers are cached
