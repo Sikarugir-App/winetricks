@@ -14736,7 +14736,6 @@ load_eadesktop()
 
     if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
         w_call d3dcompiler_47
-        w_call dxvk
     fi
 
     w_call vcrun2010
@@ -14751,6 +14750,15 @@ load_eadesktop()
 
     # NSIS installer
     w_try "${WINE}" "${file1}" EAX_LAUNCH_CLIENT=0 ${W_OPT_UNATTENDED:+ /S}
+
+    if [ "$(uname -s)" = "Darwin" ]; then
+        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dxvk/d3d10core_x64.dll
+        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dxvk/d3d11_x64.dll
+        w_try cp -f "${W_CACHE}/${W_PACKAGE}/d3d10core_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d10core.dll"
+        w_try cp -f "${W_CACHE}/${W_PACKAGE}/d3d11_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d11.dll"
+        w_override_app_dlls EACefSubProcess.exe native d3d10core
+        w_override_app_dlls EACefSubProcess.exe native d3d11
+    fi
 
     w_warn "Stop Steam from installing EA app"
     "${WINE}" reg add "HKLM\\Software\\Electronic Arts\\EA Desktop" /v InstallSuccessful /t REG_SZ /d "true" /f
