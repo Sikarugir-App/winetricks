@@ -14767,9 +14767,8 @@ w_metadata epicgames apps \
 
 load_epicgames()
 {
-    # crossover-preview-20240913 (wine-9.16)
-    if w_wine_version_in ,9.15 ; then
-        w_die "${title} requires wine version 9.16 (or newer)"
+    if w_wine_version_in ,8.99 ; then
+        w_die "${title} requires wine version 9.00 (or newer)"
     fi
 
     if w_workaround_wine_bug 48404 ""; then
