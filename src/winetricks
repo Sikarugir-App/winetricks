@@ -16230,8 +16230,8 @@ w_metadata ubisoftconnect apps \
 
 load_ubisoftconnect()
 {
-    if w_wine_version_in ,9.99; then
-        w_die "${title} requires wine version 10.0 (or newer)"
+    if w_wine_version_in ,8.99; then
+        w_die "${title} requires wine version 9.0 (or newer)"
     fi
 
     w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/ubisoftconnect/UbisoftConnectInstaller.exe aa3e768b812a0a45cbc4aba548da034b7aa924de1c63e6453c892d66ab6ca5ac
