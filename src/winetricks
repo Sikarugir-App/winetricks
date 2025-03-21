@@ -14497,7 +14497,9 @@ load_battle_net()
 
     w_override_dlls disabled BlizzardError.exe
 
-    "${WINE}" reg add "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts" /f
+    if w_wine_version_in ,10.0 ; then
+        "${WINE}" reg add "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts" /f
+    fi
 
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
     w_try "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+ --lang=enUS --installpath="${W_PROGRAMS_X86_WIN}\\Battle.net"}
