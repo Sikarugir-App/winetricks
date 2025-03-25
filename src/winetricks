@@ -15928,14 +15928,18 @@ w_metadata rockstar apps \
 
 load_rockstar()
 {
-    if w_wine_version_in ,8.99; then
-        w_die "${title} requires wine version 9.0 (or newer)"
+    if w_wine_version_in ,7.6; then
+        w_die "${title} requires wine version 8.0.1 (or newer)"
     fi
 
     w_download https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe
 
     if [ -n "${W_OPT_UNATTENDED}" ]; then
         w_warn "There's no silent install for ${title}"
+    fi
+
+    if w_wine_version_in ,8.99; then
+        "${WINE}" reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control" /v ServicesPipeTimeout /t REG_SZ /d "40000" /f
     fi
 
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
@@ -16067,6 +16071,10 @@ load_steam()
     fi
 
     w_override_dlls disabled EACrashReporter.exe
+
+    if w_wine_version_in ,8.99; then
+        "${WINE}" reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control" /v ServicesPipeTimeout /t REG_SZ /d "40000" /f
+    fi
 
     # vulkandriverquery & vulkandriverquery64 crash a lot on macOS
     if [ "$(uname -s)" = "Darwin" ]; then
