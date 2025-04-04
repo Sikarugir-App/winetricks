@@ -16052,9 +16052,9 @@ load_steam()
 
     w_try "${WINE}" SteamSetup.exe ${W_OPT_UNATTENDED:+ /S}
 
-    #if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
-    #    w_call corefonts
-    #fi
+    if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
+        w_call corefonts
+    fi
 
     if w_workaround_wine_bug 44985 "Disabling libglesv2 to make Store and Library function correctly." 7.0,; then
         w_override_app_dlls steamwebhelper.exe disabled libglesv2
@@ -16071,6 +16071,12 @@ load_steam()
     fi
 
     w_override_dlls disabled EACrashReporter.exe
+
+    # Other common deps installed by Steam
+    w_call vcrun2010
+    w_call vcrun2012
+    w_call vcrun2013
+    w_call vcrun2022
 
     if w_wine_version_in ,8.99; then
         "${WINE}" reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control" /v ServicesPipeTimeout /t REG_SZ /d "40000" /f
