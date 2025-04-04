@@ -16188,13 +16188,11 @@ load_steam()
     "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v Steam /f || true
 }
 
-#----------------------------------------------------------------
-
-w_metadata steam_remove_workaround apps \
-    title="Remove Steam workaround" \
+w_metadata steam_remove_steam_cfg apps \
+    title="Remove steam.cfg" \
     installed_exe1="${W_PROGRAMS_X86_WIN}/Steam/steam.cfg"
 
-load_steam_remove_workaround()
+load_steam_remove_steam_cfg()
 {
     if w_wine_version_in ,9.12 ; then
         w_die "${W_PACKAGE} requires wine version 9.13 (or newer)"
