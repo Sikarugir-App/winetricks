@@ -14991,13 +14991,10 @@ load_steam()
         w_override_app_dlls steamwebhelper.exe disabled libglesv2
     fi
 
-    if [ "$(uname -s)" = "Darwin" ] && w_workaround_wine_bug 49839 "Steamwebhelper.exe crashes when running Steam."; then
-        w_warn "Steam must be launched with -allosarches -cef-force-32bit -cef-in-process-gpu -cef-disable-sandbox"
-    fi
-
     # vulkandriverquery & vulkandriverquery64 crash a lot on macOS
     if [ "$(uname -s)" = "Darwin" ]; then
-        w_call nocrashdialog
+        w_override_dlls disabled vulkandriverquery.exe
+        w_override_dlls disabled vulkandriverquery64.exe
     fi
 
     # Otherwise Steam Store and Library don't show
