@@ -14493,6 +14493,10 @@ w_metadata battle_net apps \
 
 load_battle_net()
 {
+    if w_wine_version_in ,9.99; then
+        w_die "${W_PACKAGE} requires wine version 10.0 (or newer)"
+    fi
+
     w_download "https://www.battle.net/download/getInstallerForGame?os=win&gameProgram=BATTLENET_APP&version=Live" "" "Battle.net-Setup.exe"
 
     w_override_dlls disabled BlizzardError.exe
