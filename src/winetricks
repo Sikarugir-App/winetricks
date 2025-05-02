@@ -1382,6 +1382,7 @@ w_dotnet_verify()
         dotnet471) version="4.7.1" ;;
         dotnet472) version="4.7.2" ;;
         dotnet48) version="4.8" ;;
+        dotnet481) version="4.8.1" ;;
         *) echo "error: w_dotnet_verify unknown dotnet version"; exit 1 ;;
     esac
 
@@ -8375,6 +8376,56 @@ load_dotnet48()
 verify_dotnet48()
 {
     w_dotnet_verify dotnet48
+}
+
+#----------------------------------------------------------------
+
+w_metadata dotnet481 dlls \
+    title="MS .NET 4.8.1" \
+    publisher="Microsoft" \
+    year="2019" \
+    media="download" \
+    file1="ndp481-x86-x64-allos-enu.exe" \
+    conflicts="dotnet20sdk" \
+    installed_file1="${W_WINDIR_WIN}/dotnet481.installed.workaround"
+
+load_dotnet481()
+{
+    w_package_broken "https://bugs.winehq.org/show_bug.cgi?id=49532" 5.12 5.18
+    w_package_broken "https://bugs.winehq.org/show_bug.cgi?id=49897" 5.18 6.6
+
+    w_package_warn_win64
+
+    # Official version. See https://dotnet.microsoft.com/download/dotnet-framework/net481
+    w_download https://download.microsoft.com/download/4/b/2/cd00d4ed-ebdd-49ee-8a33-eabc3d1030e3/ndp481-x86-x64-allos-enu.exe c0ca2e0c9cd18a24a0a77369a13fae2c2c4e8bc83355dd24e5ddc00f9d791fe3
+
+    w_call remove_mono internal
+
+    w_store_winver
+    w_call dotnet40
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+
+    WINEDLLOVERRIDES=fusion=b w_try_ms_installer "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+/sfxlang:1027 /q /norestart}
+
+    w_override_dlls native mscoree
+
+    # Do not rely on temporary files. As a workaround, touch a file instead so that we know it's been installed for list-installed
+    w_try touch "${W_WINDIR_UNIX}/dotnet481.installed.workaround"
+
+    # See https://bugs.winehq.org/show_bug.cgi?id=47277#c9
+    case "${LANG}" in
+        C|en_US.UTF-8*) ;;
+        zh_CN*) w_warn "You may encounter infinite loops when trying to use applications that use WPF. Use LC_ALL=C when running your application as a workaround."
+        # Based on the bug, there may be other locales that are affected. But in the absence of a full list
+        # I don't think it's worth warning *every* non-en_US.UTF-8 user:
+        # *) w_warn "
+    esac
+}
+
+verify_dotnet481()
+{
+    w_dotnet_verify dotnet481
 }
 
 #----------------------------------------------------------------
