@@ -16082,7 +16082,7 @@ load_sketchup()
 
 load_steam_download_client()
 {
-    w_download_to steam https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/steam/Steam.tar.xz
+    w_download_to steam https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/steam/Steam.tar.xz d02524b7cb3809299157015a11e8a58eebc78ae4a86d1083df8467891d18e8b4
     w_try rm -rf "${W_PROGRAMS_X86_UNIX}/Steam"
     w_try tar xf ${W_CACHE}/steam/Steam.tar.xz -C "${W_PROGRAMS_X86_UNIX}"
 }
