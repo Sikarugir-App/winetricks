@@ -14786,6 +14786,8 @@ load_eadesktop()
         w_try cp -f "${W_CACHE}/${W_PACKAGE}/d3d11_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d11.dll"
         w_override_app_dlls EACefSubProcess.exe native d3d10core
         w_override_app_dlls EACefSubProcess.exe native d3d11
+        w_override_app_dlls EADesktop.exe native d3d10core
+        w_override_app_dlls EADesktop.exe native d3d11
     fi
 
     w_warn "Stop Steam from installing EA app"
@@ -16254,6 +16256,8 @@ load_steam()
         w_try cp -f "${W_CACHE}/eadesktop/d3d11_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d11.dll"
         w_override_app_dlls EACefSubProcess.exe native d3d10core
         w_override_app_dlls EACefSubProcess.exe native d3d11
+        w_override_app_dlls EADesktop.exe native d3d10core
+        w_override_app_dlls EADesktop.exe native d3d11
     fi
 
     # Other common deps installed by Steam
