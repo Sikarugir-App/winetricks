@@ -7848,6 +7848,8 @@ load_dotnet461()
         # I don't think it's worth warning *every* non-en_US.UTF-8 user:
         # *) w_warn "
     esac
+
+    w_restore_winver
 }
 
 verify_dotnet461()
