@@ -15019,13 +15019,13 @@ w_metadata hoyoplay apps \
     publisher="HoYoLAB" \
     year="2024" \
     media="download" \
-    file1="HoYoPlay_install_ua_6ff6c1cd4e8b.exe" \
+    file1="setup_hoyoverse.exe" \
     installed_file1="${W_PROGRAMS_WIN}/HoYoPlay/launcher.exe" \
     homepage="https://hoyoplay.hoyoverse.com/"
 
 load_hoyoplay()
 {
-    w_download "https://download-porter.hoyoverse.com/download-porter/2025/02/21/VYTpXlbWo8_1.4.5.222_1_0_hyp_hoyoverse_prod_202502081529_XFGRLkBk.exe?trace_key=HoYoPlay_install_ua_6ff6c1cd4e8b" "6fb0219d7d7d9683bea7084b2b530902b17be7afe5ebe5ba5b4cd8b47f303b6b" "${file1}"
+    w_download "https://sg-public-api.hoyoverse.com/event/download_porter/trace/hkrpg_global/oswebpc/default" "" "${file1}"
 
     if [ -n "${W_OPT_UNATTENDED}" ]; then
         w_try_7z "${W_PROGRAMS_UNIX}"/HoYoPlay "${W_CACHE}/${W_PACKAGE}"/${file1} -aoa
