@@ -7712,6 +7712,7 @@ load_dotnet40()
     w_call remove_mono internal
 
     w_store_winver
+    w_call dotnet20sp2
     w_call winxp
 
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
@@ -7724,13 +7725,6 @@ load_dotnet40()
     "${WINE}" reg add "HKLM\\Software\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full" /v Version /t REG_SZ /d "4.0.30319" /f
 
     W_NGEN_CMD="${WINE} ${WINEPREFIX}/drive_c/windows/Microsoft.NET/Framework/v4.0.30319/ngen.exe executequeueditems"
-
-    # Avoid a popup on WINEPREFIX updates, see https://bugs.winehq.org/show_bug.cgi?id=41727#c5
-    "${WINE}" reg add "HKLM\\Software\\Microsoft\\.NETFramework" /v OnlyUseLatestCLR /t REG_DWORD /d 0001 /f
-
-    if [ "${W_ARCH}" = "win64" ]; then
-        "${WINE}" reg add "HKLM\\Software\\Wow6432Node\\.NETFramework" /v OnlyUseLatestCLR /t REG_DWORD /d 0001 /f
-    fi
 
     # See https://bugs.winehq.org/show_bug.cgi?id=47277#c9
     case "${LANG}" in
@@ -7831,13 +7825,6 @@ load_dotnet45()
     WINEDLLOVERRIDES=fusion=b w_try_ms_installer "${WINE}" dotnetfx45_full_x86_x64.exe ${W_OPT_UNATTENDED:+/q /c:"install.exe /q"}
 
     w_override_dlls native mscoree
-
-    # Avoid a popup on WINEPREFIX updates, see https://bugs.winehq.org/show_bug.cgi?id=41727#c5
-    "${WINE}" reg add "HKLM\\Software\\Microsoft\\.NETFramework" /v OnlyUseLatestCLR /t REG_DWORD /d 0001 /f
-
-    if [ "${W_ARCH}" = "win64" ]; then
-        "${WINE}" reg add "HKLM\\Software\\Wow6432Node\\.NETFramework" /v OnlyUseLatestCLR /t REG_DWORD /d 0001 /f
-    fi
 
     w_warn "Setting Windows version to 2003, otherwise applications using .NET 4.5 will subtly fail"
     w_set_winver win2k3
