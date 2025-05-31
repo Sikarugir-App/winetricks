@@ -15025,7 +15025,7 @@ w_metadata hoyoplay apps \
 
 load_hoyoplay()
 {
-    w_download "https://sg-public-api.hoyoverse.com/event/download_porter/trace/hkrpg_global/oswebpc/default" "" "${file1}"
+    w_download "https://sg-public-api.hoyoverse.com/event/download_porter/trace/hyp_global/hyphoyoverse/default" "" "${file1}"
 
     if [ -n "${W_OPT_UNATTENDED}" ]; then
         w_try_7z "${W_PROGRAMS_UNIX}"/HoYoPlay "${W_CACHE}/${W_PACKAGE}"/${file1} -aoa
