@@ -6974,7 +6974,7 @@ w_metadata dxtrans dlls \
     year="2002" \
     media="download" \
     file1="../winxpsp3/WindowsXP-KB936929-SP3-x86-ENU.exe" \
-    installed_file1="${W_SYSTEM32_DLLS_WIN}/dxtrans.dll" \
+    installed_file1="${W_SYSTEM32_DLLS_WIN}/dxtrans.dll"
 
 load_dxtrans()
 {
