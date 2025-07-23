@@ -6992,7 +6992,7 @@ w_metadata d9vk dlls \
     year="2021" \
     media="download" \
     file1="d9vk-macOS-async-v1.10.3-20250511.tar.gz" \
-    homepage="https://github.com/Kegworks-App/d9vk" \
+    homepage="https://github.com/Kegworks-App/d9vk"
 
 load_d9vk()
 {
