@@ -14779,17 +14779,6 @@ load_eadesktop()
     # NSIS installer
     w_try "${WINE}" "${file1}" EAX_LAUNCH_CLIENT=0 ${W_OPT_UNATTENDED:+ /S}
 
-    if [ "$(uname -s)" = "Darwin" ]; then
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dxvk/d3d10core_x64.dll 0fa08bba860c63e3abeeabfc96d0e7aa327411a975f8f23d2dc63594ef5f796e
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dxvk/d3d11_x64.dll 0ff0b0835dde29556bd01dfce7b1ae348d7f229cb1e1a37cc71ea1a028beeca4
-        w_try cp -f "${W_CACHE}/${W_PACKAGE}/d3d10core_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d10core.dll"
-        w_try cp -f "${W_CACHE}/${W_PACKAGE}/d3d11_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d11.dll"
-        w_override_app_dlls EACefSubProcess.exe native d3d10core
-        w_override_app_dlls EACefSubProcess.exe native d3d11
-        w_override_app_dlls EADesktop.exe native d3d10core
-        w_override_app_dlls EADesktop.exe native d3d11
-    fi
-
     w_warn "Stop Steam from installing EA app"
     "${WINE}" reg add "HKLM\\Software\\Electronic Arts\\EA Desktop" /v InstallSuccessful /t REG_SZ /d "true" /f
 }
@@ -16245,19 +16234,6 @@ load_steam()
     if [ "$(uname -s)" = "Darwin" ]; then
         w_override_dlls disabled vulkandriverquery.exe
         w_override_dlls disabled vulkandriverquery64.exe
-    fi
-
-    # Workaounds for EADesktop
-    if [ "$(uname -s)" = "Darwin" ]; then
-        w_download_to eadesktop https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dxvk/d3d10core_x64.dll 0fa08bba860c63e3abeeabfc96d0e7aa327411a975f8f23d2dc63594ef5f796e
-        w_download_to eadesktop https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dxvk/d3d11_x64.dll 0ff0b0835dde29556bd01dfce7b1ae348d7f229cb1e1a37cc71ea1a028beeca4
-        w_try_mkdir "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop"
-        w_try cp -f "${W_CACHE}/eadesktop/d3d10core_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d10core.dll"
-        w_try cp -f "${W_CACHE}/eadesktop/d3d11_x64.dll" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop/d3d11.dll"
-        w_override_app_dlls EACefSubProcess.exe native d3d10core
-        w_override_app_dlls EACefSubProcess.exe native d3d11
-        w_override_app_dlls EADesktop.exe native d3d10core
-        w_override_app_dlls EADesktop.exe native d3d11
     fi
 
     # Other common deps installed by Steam
