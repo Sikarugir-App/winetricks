@@ -14754,8 +14754,8 @@ load_eadesktop()
 {
     w_package_unsupported_win32
 
-    if [ "$(uname -s)" = "Darwin" ] && w_wine_version_in ,8.0; then
-        w_die "${W_PACKAGE} requires wine version 8.0.1 (or newer)"
+    if [ "$(uname -s)" = "Darwin" ] && w_wine_version_in ,8.99; then
+        w_die "${W_PACKAGE} requires wine version 9.0 (or newer)"
     fi
 
     if w_workaround_wine_bug 32342 "EACefSubProcess crashes when updating or launching EALauncher (missing fonts)"; then
