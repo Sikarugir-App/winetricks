@@ -1453,7 +1453,7 @@ winetricks_selfupdate()
     _W_tmpdir=${TMPDIR:-/tmp}
     _W_tmpdir="$(mktemp -d "${_W_tmpdir}/${_W_filename}.XXXXXXXX")"
 
-    w_download_to "${_W_tmpdir}" https://raw.githubusercontent.com/Kegworks-App/winetricks/kegworks/src/winetricks "" "${_W_filename}"
+    w_download_to "${_W_tmpdir}" https://raw.githubusercontent.com/Sikarugir-app/winetricks/sikarugir/src/winetricks "" "${_W_filename}"
 
     # 2016/10/26: now file is uncompressed? Handle both cases:
     update_file_type="$(file "${_W_tmpdir}/${_W_filename}")"
@@ -3099,7 +3099,7 @@ winetricks_latest_version_check()
         return
     fi
 
-    latest_version="$(winetricks_dl_url_to_stdout https://raw.githubusercontent.com/Kegworks-App/winetricks/kegworks/files/LATEST)"
+    latest_version="$(winetricks_dl_url_to_stdout https://raw.githubusercontent.com/Sikarugir-app/winetricks/sikarugir/files/LATEST)"
 
     # Check that $latest_version is an actual number in case github is down
     if ! echo "${latest_version}" | grep -q -E "[0-9]{8}" || [ -z "${latest_version}" ] ; then
@@ -5450,7 +5450,7 @@ helper_directx_dl()
     # FIXME: none of the verbs that use this will show download status right
     # until file1 metadata is extended to handle common cache dir
     # 2021/01/28: https://download.microsoft.com/download/E/E/1/EE17FF74-6C45-4575-9CF4-7FC2597ACD18/directx_feb2010_redist.exe
-    w_download_to directx9 https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/directx_feb2010_redist/directx_feb2010_redist.exe f6d191e89a963d7cca34f169d30f49eab99c1ed3bb92da73ec43617caaa1e93f
+    w_download_to directx9 https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/directx_feb2010_redist/directx_feb2010_redist.exe f6d191e89a963d7cca34f169d30f49eab99c1ed3bb92da73ec43617caaa1e93f
 
     DIRECTX_NAME=directx_feb2010_redist.exe
 }
@@ -5461,7 +5461,7 @@ helper_directx_Jun2010()
     # June 2010 DirectX 9c User Redistributable
     # https://www.microsoft.com/en-us/download/details.aspx?id=8109
     # 2021/01/28: https://download.microsoft.com/download/8/4/A/84A35BF1-DAFE-4AE8-82AF-AD2AE20B6B14/directx_Jun2010_redist.exe
-    w_download_to directx9 https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/directx_Jun2010_redist/directx_Jun2010_redist.exe 8746ee1a84a083a90e37899d71d50d5c7c015e69688a466aa80447f011780c0d
+    w_download_to directx9 https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/directx_Jun2010_redist/directx_Jun2010_redist.exe 8746ee1a84a083a90e37899d71d50d5c7c015e69688a466aa80447f011780c0d
 
     DIRECTX_NAME=directx_Jun2010_redist.exe
 }
@@ -5524,7 +5524,7 @@ helper_winxp64sp2()
     filename="$1"
 
     # https://www.microsoft.com/en-us/download/details.aspx?id=1779
-    w_download_to winxp64sp2 https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/helper_winxp64sp2/WindowsServer2003.WindowsXP-KB914961-SP2-x64-ENU.exe 62c6f31edc47f5a00651a83b6fa6edc7b4245dcf693d9233b6d0a79e52a5a57a
+    w_download_to winxp64sp2 https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/helper_winxp64sp2/WindowsServer2003.WindowsXP-KB914961-SP2-x64-ENU.exe 62c6f31edc47f5a00651a83b6fa6edc7b4245dcf693d9233b6d0a79e52a5a57a
 
     w_try_cabextract -d "${W_TMP}" -L -F "${filename}" "${W_CACHE}"/winxp64sp2/WindowsServer2003.WindowsXP-KB914961-SP2-x64-ENU.exe
 }
@@ -5535,7 +5535,7 @@ helper_winxpsp2_support_tools()
     filename="$1"
 
     # https://www.microsoft.com/en-us/download/details.aspx?id=18546
-    w_download_to winxpsp2_support_tools https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/helper_winxpsp2_support_tools/WindowsXP-KB838079-SupportTools-ENU.exe 7927e87af616d2fb8d4ead0db0103eb845a4e6651b20a5bffea9eebc3035c24d
+    w_download_to winxpsp2_support_tools https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/helper_winxpsp2_support_tools/WindowsXP-KB838079-SupportTools-ENU.exe 7927e87af616d2fb8d4ead0db0103eb845a4e6651b20a5bffea9eebc3035c24d
 
     w_try_cabextract -d "${W_TMP}" -L -F support.cab "${W_CACHE}"/winxpsp2_support_tools/WindowsXP-KB838079-SupportTools-ENU.exe
     w_try_cabextract -d "${W_TMP}" -L -F "${filename}" "${W_TMP}"/support.cab
@@ -5942,11 +5942,11 @@ w_metadata d3dcompiler_42 dlls \
 
 load_d3dcompiler_42()
 {
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_42/d3dcompiler_42_32.dll 6c976311406c23aa71018d274da0ecdef43b6e3a3b0b01e941a5e8e4e974386c
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_42/d3dcompiler_42_32.dll 6c976311406c23aa71018d274da0ecdef43b6e3a3b0b01e941a5e8e4e974386c
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_42_32.dll" "${W_SYSTEM32_DLLS}/d3dcompiler_42.dll"
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_42/d3dcompiler_42.dll 4d61e843aa86d8801a60d01b8e872379c5b2503795a2bcbe6141978396ade00b
+        w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_42/d3dcompiler_42.dll 4d61e843aa86d8801a60d01b8e872379c5b2503795a2bcbe6141978396ade00b
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_42.dll" "${W_SYSTEM64_DLLS}/d3dcompiler_42.dll"
     fi
 
@@ -5965,11 +5965,11 @@ w_metadata d3dcompiler_43 dlls \
 
 load_d3dcompiler_43()
 {
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_43/d3dcompiler_43_32.dll 2f23182ec6f4889397ac4bf03d62536136c5bdba825c7d2c4ef08c827f3a8a1c
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_43/d3dcompiler_43_32.dll 2f23182ec6f4889397ac4bf03d62536136c5bdba825c7d2c4ef08c827f3a8a1c
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_43_32.dll" "${W_SYSTEM32_DLLS}/d3dcompiler_43.dll"
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_43/d3dcompiler_43.dll 44c3a7e330b54a35a9efa015831392593aa02e7da1460be429d17c3644850e8a
+        w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_43/d3dcompiler_43.dll 44c3a7e330b54a35a9efa015831392593aa02e7da1460be429d17c3644850e8a
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_43.dll" "${W_SYSTEM64_DLLS}/d3dcompiler_43.dll"
     fi
 
@@ -5988,11 +5988,11 @@ w_metadata d3dcompiler_46 dlls \
 
 load_d3dcompiler_46()
 {
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_46/d3dcompiler_46_32.dll 58d9a00888af693b2a5222fe74cfded32ce83e74f85b474f1cbe5987217b5a9d
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_46/d3dcompiler_46_32.dll 58d9a00888af693b2a5222fe74cfded32ce83e74f85b474f1cbe5987217b5a9d
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_46_32.dll" "${W_SYSTEM32_DLLS}/d3dcompiler_46.dll"
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_46/d3dcompiler_46.dll b1a06f7aa52439a948a152bfd3301d9b595c78969bb77c9741bba935139f58a0
+        w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_46/d3dcompiler_46.dll b1a06f7aa52439a948a152bfd3301d9b595c78969bb77c9741bba935139f58a0
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_46.dll" "${W_SYSTEM64_DLLS}/d3dcompiler_46.dll"
     fi
 
@@ -6011,11 +6011,11 @@ w_metadata d3dcompiler_47 dlls \
 
 load_d3dcompiler_47()
 {
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_47/d3dcompiler_47_32.dll 2ad0d4987fc4624566b190e747c9d95038443956ed816abfd1e2d389b5ec0851
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_47/d3dcompiler_47_32.dll 2ad0d4987fc4624566b190e747c9d95038443956ed816abfd1e2d389b5ec0851
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_47_32.dll" "${W_SYSTEM32_DLLS}/d3dcompiler_47.dll"
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/d3dcompiler_47/d3dcompiler_47.dll 4432bbd1a390874f3f0a503d45cc48d346abc3a8c0213c289f4b615bf0ee84f3
+        w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/d3dcompiler_47/d3dcompiler_47.dll 4432bbd1a390874f3f0a503d45cc48d346abc3a8c0213c289f4b615bf0ee84f3
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/d3dcompiler_47.dll" "${W_SYSTEM64_DLLS}/d3dcompiler_47.dll"
     fi
 
@@ -6990,7 +6990,7 @@ w_metadata d9vk dlls \
     year="2021" \
     media="download" \
     file1="d9vk-macOS-async-v1.10.3-20250511.tar.gz" \
-    homepage="https://github.com/Kegworks-App/d9vk" \
+    homepage="https://github.com/Sikarugir-app/d9vk" \
 
 load_d9vk()
 {
@@ -7000,7 +7000,7 @@ load_d9vk()
         w_die "${W_PACKAGE} requires wine version 7.7 (or newer)"
     fi
 
-    w_download https://github.com/Kegworks-App/d9vk/releases/download/v1.10.3-20250511/${file1} 13a088e96c90501705c26326044ccc57e2b03adda3ed0dd7061e89249d4c176e
+    w_download https://github.com/Sikarugir-app/d9vk/releases/download/v1.10.3-20250511/${file1} 13a088e96c90501705c26326044ccc57e2b03adda3ed0dd7061e89249d4c176e
 
     w_try_cd "${W_TMP}"
     w_try tar -xf "${W_CACHE}/${W_PACKAGE}/${file1}"
@@ -7051,7 +7051,7 @@ w_metadata dmusic32 dlls \
 
 load_dmusic32()
 {
-    w_download_to directx9 https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/directx_apr2006_redist/directx_apr2006_redist.exe dd8c3d401efe4561b67bd88475201b2f62f43cd23e4acc947bb34a659fa74952
+    w_download_to directx9 https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/directx_apr2006_redist/directx_apr2006_redist.exe dd8c3d401efe4561b67bd88475201b2f62f43cd23e4acc947bb34a659fa74952
 
     w_try_cabextract -d "${W_TMP}" -F DirectX.cab "${W_CACHE}"/directx9/directx_apr2006_redist.exe
     w_try_cabextract -d "${W_SYSTEM32_DLLS}" -L -F dmusic32.dll "${W_TMP}"/DirectX.cab
@@ -7608,11 +7608,11 @@ load_dotnet20sp2()
 
     if [ "${W_ARCH}" = "win32" ]; then
         # https://www.microsoft.com/en-us/download/details.aspx?id=1639
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dotnet20sp2/NetFx20SP2_x86.exe 6e3f363366e7d0219b7cb269625a75d410a5c80d763cc3d73cf20841084e851f
+        w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/dotnet20sp2/NetFx20SP2_x86.exe 6e3f363366e7d0219b7cb269625a75d410a5c80d763cc3d73cf20841084e851f
         exe="NetFx20SP2_x86.exe"
     elif [ "${W_ARCH}" = "win64" ]; then
         # https://www.microsoft.com/en-us/download/details.aspx?id=1639
-        w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/dotnet20sp2/NetFx20SP2_x64.exe 430315c97c57ac158e7311bbdbb7130de3e88dcf5c450a25117c74403e558fbe
+        w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/dotnet20sp2/NetFx20SP2_x64.exe 430315c97c57ac158e7311bbdbb7130de3e88dcf5c450a25117c74403e558fbe
         exe="NetFx20SP2_x64.exe"
     fi
 
@@ -9942,22 +9942,22 @@ w_metadata mf dlls \
 
 load_mf()
 {
-    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/syswow64/colorcnv.dll 703559b28738cf6f14456f330fd1bc740671a7584694b03cb03245dae5aaa58d colorcnv.dll
+    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/syswow64/colorcnv.dll 703559b28738cf6f14456f330fd1bc740671a7584694b03cb03245dae5aaa58d colorcnv.dll
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/colorcnv.dll" "${W_SYSTEM32_DLLS}/colorcnv.dll"
 
-    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/syswow64/mferror.dll 34c74d48f31872f195d3fcf5c57278db741bd98424cf54159aa2d8a69e6f869d mferror.dll
+    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/syswow64/mferror.dll 34c74d48f31872f195d3fcf5c57278db741bd98424cf54159aa2d8a69e6f869d mferror.dll
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/mferror.dll" "${W_SYSTEM32_DLLS}/mferror.dll"
 
-    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/mfplat.dll 025294dd69a421fe4eacaa463f8cb797610d8f3a7a3c61656ae83d0cee07a9bf mfplat.dll.64
+    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/mfplat.dll 025294dd69a421fe4eacaa463f8cb797610d8f3a7a3c61656ae83d0cee07a9bf mfplat.dll.64
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/mfplat.dll.64" "${W_SYSTEM64_DLLS}/mfplat.dll"
 
-    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/syswow64/mfplay.dll a1ade23dada272236c724107648e1ff53741a5b53dfd24e0724f170d99c79ced mfplay.dll
+    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/syswow64/mfplay.dll a1ade23dada272236c724107648e1ff53741a5b53dfd24e0724f170d99c79ced mfplay.dll
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/mfplay.dll" "${W_SYSTEM32_DLLS}/mfplay.dll"
 
-    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/syswow64/msmpeg2adec.dll 9c0708bc7b1e49725d2ab7bb1cc67f635284c6452ad4743f2262b71f3ceef287 msmpeg2adec.dll
+    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/syswow64/msmpeg2adec.dll 9c0708bc7b1e49725d2ab7bb1cc67f635284c6452ad4743f2262b71f3ceef287 msmpeg2adec.dll
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/msmpeg2adec.dll" "${W_SYSTEM32_DLLS}/msmpeg2adec.dll"
 
-    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/syswow64/msmpeg2vdec.dll b023fbd3ef0658512b059f5703e05fff29af3025a4f48da7c3c013d0a8119e3c msmpeg2vdec.dll
+    w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/syswow64/msmpeg2vdec.dll b023fbd3ef0658512b059f5703e05fff29af3025a4f48da7c3c013d0a8119e3c msmpeg2vdec.dll
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/msmpeg2vdec.dll" "${W_SYSTEM32_DLLS}/msmpeg2vdec.dll"
 
     helper_win7sp1 x86_microsoft-windows-mediafoundation_31bf3856ad364e35_6.1.7601.17514_none_9e6699276b03c38e/mf.dll
@@ -9976,22 +9976,22 @@ load_mf()
     w_try_cp_dll "${W_TMP}/x86_microsoft-windows-wmvdecod_31bf3856ad364e35_6.1.7601.17514_none_c491ee3d3e923b78/wmvdecod.dll" "${W_SYSTEM32_DLLS}/wmvdecod.dll"
 
     if [ "${W_ARCH}" = "win64" ]; then
-        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/colorcnv.dll 0bab1293a19c960315b89789f7cf4dd39d6cb743d0f4929d03e8f149b6845718 colorcnv.dll.64
+        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/colorcnv.dll 0bab1293a19c960315b89789f7cf4dd39d6cb743d0f4929d03e8f149b6845718 colorcnv.dll.64
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/colorcnv.dll.64" "${W_SYSTEM64_DLLS}/colorcnv.dll"
 
-        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/mferror.dll d9ce54938155a37f260b01d808917bc541383b750cd3a3094ce9308e318a0e2c mferror.dll.64
+        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/mferror.dll d9ce54938155a37f260b01d808917bc541383b750cd3a3094ce9308e318a0e2c mferror.dll.64
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/mferror.dll.64" "${W_SYSTEM64_DLLS}/mferror.dll"
 
-        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/mfplat.dll 025294dd69a421fe4eacaa463f8cb797610d8f3a7a3c61656ae83d0cee07a9bf mfplat.dll.64
+        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/mfplat.dll 025294dd69a421fe4eacaa463f8cb797610d8f3a7a3c61656ae83d0cee07a9bf mfplat.dll.64
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/mfplat.dll.64" "${W_SYSTEM64_DLLS}/mfplat.dll"
 
-        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/mfplay.dll a5c579a7ad6d55cbb13c748201b97c286e0e165827b8ed19019c696459f1f13a mfplay.dll.64
+        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/mfplay.dll a5c579a7ad6d55cbb13c748201b97c286e0e165827b8ed19019c696459f1f13a mfplay.dll.64
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/mfplay.dll.64" "${W_SYSTEM64_DLLS}/mfplay.dll"
 
-        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/msmpeg2adec.dll 97a9b89b1b50cddf6adff9059dce5935d905796dbcd6db58ea2fa693caaa194a msmpeg2adec.dll.64
+        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/msmpeg2adec.dll 97a9b89b1b50cddf6adff9059dce5935d905796dbcd6db58ea2fa693caaa194a msmpeg2adec.dll.64
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/msmpeg2adec.dll.64" "${W_SYSTEM64_DLLS}/msmpeg2adec.dll"
 
-        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Kegworks-App/mf-install/raw/master/system32/msmpeg2vdec.dll d7d0bc980c658d5e2f2c605075338493eac97b9d7674007a9490846c2dcdf6f3 msmpeg2vdec.dll.64
+        w_download_to "${W_CACHE}/${W_PACKAGE}" https://github.com/Sikarugir-app/mf-install/raw/master/system32/msmpeg2vdec.dll d7d0bc980c658d5e2f2c605075338493eac97b9d7674007a9490846c2dcdf6f3 msmpeg2vdec.dll.64
         w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/msmpeg2vdec.dll.64" "${W_SYSTEM64_DLLS}/msmpeg2vdec.dll"
 
         helper_win7sp1_x64 amd64_microsoft-windows-mediafoundation_31bf3856ad364e35_6.1.7601.17514_none_fa8534ab236134c4/mf.dll
@@ -12622,12 +12622,12 @@ w_metadata ucrtbase2019 dlls \
 
 load_ucrtbase2019()
 {
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/ucrtbase2019/ucrtbase_32.dll 66a93e40dd6721ded8a32d407d2c5fc291edaf74485ccbc848b6804efebd6dba
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/ucrtbase2019/ucrtbase_32.dll 66a93e40dd6721ded8a32d407d2c5fc291edaf74485ccbc848b6804efebd6dba
     w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/ucrtbase_32.dll" "${W_SYSTEM32_DLLS}/ucrtbase.dll"
 
     case "${W_ARCH}" in
         win64)
-            w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/ucrtbase2019/ucrtbase.dll 51cbbde17a768930300236facd9738f54b7801e6715771ff8af90bfbe3fad44f
+            w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/ucrtbase2019/ucrtbase.dll 51cbbde17a768930300236facd9738f54b7801e6715771ff8af90bfbe3fad44f
             w_try_cp_dll "${W_CACHE}/${W_PACKAGE}/ucrtbase.dll" "${W_SYSTEM64_DLLS}/ucrtbase.dll"
     esac
 
@@ -13502,7 +13502,7 @@ w_metadata andale fonts \
 
 load_andale()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/andale32.exe" 0524fe42951adc3a7eb870e32f0920313c71f170c859b5f770d82b4ee111e970
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/andale32.exe" 0524fe42951adc3a7eb870e32f0920313c71f170c859b5f770d82b4ee111e970
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/andale32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "AndaleMo.TTF"
     w_register_font andalemo.ttf "Andale Mono"
@@ -13520,8 +13520,8 @@ w_metadata arial fonts \
 
 load_arial()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/arial32.exe" 85297a4d146e9c87ac6f74822734bdee5f4b2a722d7eaa584b7f2cbf76f478f6
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/arialb32.exe" a425f0ffb6a1a5ede5b979ed6177f4f4f4fdef6ae7c302a7b7720ef332fec0a8
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/arial32.exe" 85297a4d146e9c87ac6f74822734bdee5f4b2a722d7eaa584b7f2cbf76f478f6
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/arialb32.exe" a425f0ffb6a1a5ede5b979ed6177f4f4f4fdef6ae7c302a7b7720ef332fec0a8
 
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/arial32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Arial*.TTF"
@@ -13547,7 +13547,7 @@ w_metadata comicsans fonts \
 
 load_comicsans()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/comic32.exe" 9c6df3feefde26d4e41d4a4fe5db2a89f9123a772594d7f59afd062625cd204e
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/comic32.exe" 9c6df3feefde26d4e41d4a4fe5db2a89f9123a772594d7f59afd062625cd204e
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/comic32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Comic*.TTF"
     w_register_font comicbd.ttf "Comic Sans MS Bold"
@@ -13565,7 +13565,7 @@ w_metadata courier fonts \
     installed_file1="${W_FONTSDIR_WIN}/cour.ttf"
 load_courier()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/courie32.exe" bb511d861655dde879ae552eb86b134d6fae67cb58502e6ff73ec5d9151f3384
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/courie32.exe" bb511d861655dde879ae552eb86b134d6fae67cb58502e6ff73ec5d9151f3384
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/courie32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "cour*.ttf"
     w_register_font courbd.ttf "Courier New Bold"
@@ -13585,7 +13585,7 @@ w_metadata georgia fonts \
     installed_file1="${W_FONTSDIR_WIN}/georgia.ttf"
 load_georgia()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/georgi32.exe" 2c2c7dcda6606ea5cf08918fb7cd3f3359e9e84338dc690013f20cd42e930301
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/georgi32.exe" 2c2c7dcda6606ea5cf08918fb7cd3f3359e9e84338dc690013f20cd42e930301
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/georgi32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Georgia*.TTF"
     w_register_font georgiab.ttf "Georgia Bold"
@@ -13606,7 +13606,7 @@ w_metadata impact fonts \
 
 load_impact()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/impact32.exe" 6061ef3b7401d9642f5dfdb5f2b376aa14663f6275e60a51207ad4facf2fccfb
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/impact32.exe" 6061ef3b7401d9642f5dfdb5f2b376aa14663f6275e60a51207ad4facf2fccfb
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/impact32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Impact.TTF"
     w_register_font impact.ttf "Impact"
@@ -13624,7 +13624,7 @@ w_metadata times fonts \
 
 load_times()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/times32.exe" db56595ec6ef5d3de5c24994f001f03b2a13e37cee27bc25c58f6f43e8f807ab
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/times32.exe" db56595ec6ef5d3de5c24994f001f03b2a13e37cee27bc25c58f6f43e8f807ab
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/times32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Times*.TTF"
     w_register_font timesbd.ttf "Times New Roman Bold"
@@ -13645,7 +13645,7 @@ w_metadata trebuchet fonts \
 
 load_trebuchet()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/trebuc32.exe" 5a690d9bb8510be1b8b4fe49f1f2319651fe51bbe54775ddddd8ef0bd07fdac9
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/trebuc32.exe" 5a690d9bb8510be1b8b4fe49f1f2319651fe51bbe54775ddddd8ef0bd07fdac9
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/trebuc32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "[tT]rebuc*.ttf"
     w_register_font trebucbd.ttf "Trebuchet MS Bold"
@@ -13666,7 +13666,7 @@ w_metadata verdana fonts \
 
 load_verdana()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/verdan32.exe" c1cb61255e363166794e47664e2f21af8e3a26cb6346eb8d2ae2fa85dd5aad96
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/verdan32.exe" c1cb61255e363166794e47664e2f21af8e3a26cb6346eb8d2ae2fa85dd5aad96
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/verdan32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Verdana*.TTF"
     w_register_font verdanab.ttf "Verdana Bold"
@@ -13687,7 +13687,7 @@ w_metadata webdings fonts \
 
 load_webdings()
 {
-    w_download_to corefonts "https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/corefonts/webdin32.exe" 64595b5abc1080fba8610c5c34fab5863408e806aafe84653ca8575bed17d75a
+    w_download_to corefonts "https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/corefonts/webdin32.exe" 64595b5abc1080fba8610c5c34fab5863408e806aafe84653ca8575bed17d75a
     w_try_cabextract -d "${W_TMP}" "${W_CACHE}"/corefonts/webdin32.exe
     w_try_cp_font_files "${W_TMP}" "${W_FONTSDIR_UNIX}" "Webdings.TTF"
     w_register_font webdings.ttf "Webdings"
@@ -14677,7 +14677,7 @@ load_eadesktop()
 
     w_override_dlls disabled EACrashReporter.exe
 
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/eadesktop/EAappInstaller.exe bb88080525f2d72403b6529e6ec366d4cdac73d2fc9d7585c3636aaae37e718a
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/eadesktop/EAappInstaller.exe bb88080525f2d72403b6529e6ec366d4cdac73d2fc9d7585c3636aaae37e718a
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
 
     # NSIS installer
@@ -16082,7 +16082,7 @@ load_sketchup()
 
 load_steam_download_client()
 {
-    w_download_to steam https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/steam/Steam.tar.xz d02524b7cb3809299157015a11e8a58eebc78ae4a86d1083df8467891d18e8b4
+    w_download_to steam https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/steam/Steam.tar.xz d02524b7cb3809299157015a11e8a58eebc78ae4a86d1083df8467891d18e8b4
     w_try rm -rf "${W_PROGRAMS_X86_UNIX}/Steam"
     w_try tar xf ${W_CACHE}/steam/Steam.tar.xz -C "${W_PROGRAMS_X86_UNIX}"
 }
@@ -16187,7 +16187,7 @@ load_ubisoftconnect()
         w_die "${title} requires wine version 10.0 (or newer)"
     fi
 
-    w_download https://github.com/Kegworks-App/winetricks-archive-mirror/releases/download/ubisoftconnect/UbisoftConnectInstaller.exe aa3e768b812a0a45cbc4aba548da034b7aa924de1c63e6453c892d66ab6ca5ac
+    w_download https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/ubisoftconnect/UbisoftConnectInstaller.exe aa3e768b812a0a45cbc4aba548da034b7aa924de1c63e6453c892d66ab6ca5ac
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
 
     # NSIS installer
