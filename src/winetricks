@@ -16183,13 +16183,6 @@ load_sketchup()
 
 #----------------------------------------------------------------
 
-load_block_steam_updates()
-{
-    cat > "${W_PROGRAMS_X86_UNIX}/Steam/steam.cfg" <<_EOF_
-BootStrapperInhibitAll=enable
-_EOF_
-}
-
 load_steam_download_client()
 {
     if w_wine_version_in ,7.8 ; then
@@ -16199,7 +16192,11 @@ load_steam_download_client()
     else
         w_try_cd "${W_PROGRAMS_X86_UNIX}/Steam"
         "${WINE}" Steam.exe -forcesteamupdate -forcepackagedownload -overridepackageurl http://web.archive.org/web/20250306194830if_/media.steampowered.com/client -exitsteam > /dev/null 2>&1
-        load_block_steam_updates
+
+    cat > "${W_PROGRAMS_X86_UNIX}/Steam/steam.cfg" <<_EOF_
+BootStrapperInhibitAll=enable
+
+_EOF_
     fi
 }
 
