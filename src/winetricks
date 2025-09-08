@@ -6892,7 +6892,7 @@ w_metadata cncnet_ra2 apps \
 load_cncnet_ra2()
 {
     w_download https://github.com/CnCNet/cncnet-yr-client-package/releases/download/yr-8.75.1/CnCNet5_YR_Installer_8.75.1.exe 46e81f93c763a8d6d55eaf9210ba15d846815a324075b20cdcd38c6008d78430
-    w_call dotnetdesktop7
+    # w_call dotnetdesktop7
     w_try "${WINE}" ${W_CACHE}/${W_PACKAGE}/${file1} /silent /verysilent /norestart /suppressmsgboxes
 }
 
