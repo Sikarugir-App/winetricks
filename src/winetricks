@@ -14813,7 +14813,7 @@ w_metadata galaxy apps \
     publisher="GOG" \
     year="2020" \
     media="download" \
-    file1="setup_galaxy_2.0.77.22.exe" \
+    file1="setup_galaxy_2.0.89.99.exe" \
     installed_exe1="${W_PROGRAMS_X86_WIN}/GOG Galaxy/GalaxyClient.exe" \
     homepage="https://www.gog.com"
 
@@ -14827,7 +14827,7 @@ load_galaxy()
     w_package_broken "https://www.codeweavers.com/compatibility/crossover/gog-galaxy" 8.0.2 9.13
 
     # Find latest version from https://remote-config.gog.com/components/webinstaller?component_version=2.0.0
-    w_download https://content-system.gog.com/open_link/download?path=/open/galaxy/client/2.0.77.22/setup_galaxy_2.0.77.22.exe 58c7ffd847589c924316c6b36f1aab11b6ced07af2a25e3092a0ca1fe2847ae7
+    w_download https://content-system.gog.com/open_link/download?path=/open/galaxy/client/setup_galaxy_2.0.89.99.exe
 
     #w_call corefonts
     #w_call dotnet48
