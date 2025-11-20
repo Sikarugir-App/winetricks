@@ -16250,7 +16250,7 @@ load_steam()
     w_call vcrun2022
 
     # Don't auto starting when refreshing the wineprefix
-    "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v Steam /f || true
+    "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion" /v Run /f || true
 }
 
 w_metadata steam_remove_steam_cfg apps \
