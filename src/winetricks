@@ -16229,9 +16229,8 @@ load_steam()
         w_call d3dcompiler_47
     fi
 
-    # Needs at least crossover-preview-20240808 (wine-9.13)
-    #  Failed in crossover-preview-20240508 (wine-9.6)
-    if w_wine_version_in ,9.12 ; then
+    # Needs at least wine-10.0
+    if w_wine_version_in ,9.99 ; then
         load_steam_download_client
     fi
 
@@ -16259,8 +16258,8 @@ w_metadata steam_remove_steam_cfg apps \
 
 load_steam_remove_steam_cfg()
 {
-    if w_wine_version_in ,9.12 ; then
-        w_die "${W_PACKAGE} requires wine version 9.13 (or newer)"
+    if w_wine_version_in ,9.99 ; then
+        w_die "${W_PACKAGE} requires wine version 10.0 (or newer)"
     fi
 
     w_try rm -f "${W_PROGRAMS_X86_UNIX}/Steam/steam.cfg"
