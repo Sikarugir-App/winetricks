@@ -14718,10 +14718,7 @@ w_metadata epicgames apps \
 
 load_epicgames()
 {
-    # crossover-preview-20240913 (wine-9.16)
-    if w_wine_version_in ,9.15 ; then
-        w_die "${title} requires wine version 9.16 (or newer)"
-    fi
+    w_package_broken "https://github.com/Sikarugir-App/Sikarugir/issues/128"
 
     if w_workaround_wine_bug 48404 ""; then
         w_warn "Free game notifications and other pop up messages can't be closed and"
