@@ -16079,13 +16079,6 @@ load_sketchup()
 
 #----------------------------------------------------------------
 
-load_steam_download_client()
-{
-    w_download_to steam https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/steam/Steam.tar.xz d02524b7cb3809299157015a11e8a58eebc78ae4a86d1083df8467891d18e8b4
-    w_try rm -rf "${W_PROGRAMS_X86_UNIX}/Steam"
-    w_try tar xf ${W_CACHE}/steam/Steam.tar.xz -C "${W_PROGRAMS_X86_UNIX}"
-}
-
 w_metadata steam apps \
     title="Steam" \
     publisher="Valve" \
@@ -16120,12 +16113,6 @@ load_steam()
 
     if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
         w_call d3dcompiler_47
-    fi
-
-    # Needs at least crossover-preview-20240808 (wine-9.13)
-    #  Failed in crossover-preview-20240508 (wine-9.6)
-    if w_wine_version_in ,9.12 ; then
-        load_steam_download_client
     fi
 
     w_override_dlls disabled EACrashReporter.exe
