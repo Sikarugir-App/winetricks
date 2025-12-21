@@ -15971,6 +15971,29 @@ _EOF_
 
 #----------------------------------------------------------------
 
+w_metadata rare apps \
+    title="Epic Games Launcher alternative" \
+    publisher="RareDevs" \
+    year="2020" \
+    media="download" \
+    file1="Rare-1.12.0.0.msi" \
+    installed_exe1="${W_PROGRAMS_WIN}/rare/Rare.exe" \
+    homepage="https://github.com/RareDevs/Rare"
+
+load_rare()
+{
+    if w_wine_version_in ,8.99 ; then
+        w_die "${title} requires wine version 9.0 (or newer)"
+    fi
+
+    w_download https://github.com/RareDevs/Rare/releases/download/1.12.0/${file1}
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+    w_try "${WINE}" msiexec /i ${file1} ${W_OPT_UNATTENDED:+/qb}
+}
+
+#----------------------------------------------------------------
+
 w_metadata rockstar apps \
     title="Rockstar Games Launcher" \
     publisher="Rockstar" \
