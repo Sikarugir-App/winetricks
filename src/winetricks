@@ -1379,6 +1379,7 @@ w_dotnet_verify()
         dotnet46) version="4.6" ;;
         dotnet461) version="4.6.1" ;;
         dotnet462) version="4.6.2" ;;
+        dotnet47) version="4.7" ;;
         dotnet471) version="4.7.1" ;;
         dotnet472) version="4.7.2" ;;
         dotnet48) version="4.8" ;;
@@ -8219,6 +8220,59 @@ load_dotnet462()
 verify_dotnet462()
 {
     w_dotnet_verify dotnet462
+}
+
+#----------------------------------------------------------------
+
+w_metadata dotnet47 dlls \
+    title="MS .NET 4.7" \
+    publisher="Microsoft" \
+    year="2017" \
+    media="download" \
+    file1="NDP47-KB3186497-x86-x64-AllOS-ENU.exe" \
+    conflicts="dotnet20sdk dotnet30sp1" \
+    installed_file1="${W_WINDIR_WIN}/dotnet47.installed.workaround"
+
+load_dotnet47()
+{
+    w_package_broken "https://bugs.winehq.org/show_bug.cgi?id=49532" 5.12 5.18
+    w_package_broken "https://bugs.winehq.org/show_bug.cgi?id=52722" 7.5 7.6
+
+    w_package_warn_win64
+
+    # Official version. See https://dotnet.microsoft.com/download/dotnet-framework/net47
+    w_download https://download.microsoft.com/download/8/b/7/8b79adc2-162c-4cf4-a200-3aeaadc455bf/NDP47-KB3186497-x86-x64-AllOS-ENU.exe b94e53a2e6a263f9ea9acf84399db9df02e4a22acceeea8e61d5581abc5fe631
+
+    w_call remove_mono internal
+
+    w_store_winver
+    w_call dotnet462
+    w_set_winver win7
+
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+
+    WINEDLLOVERRIDES=fusion=b w_try_ms_installer "${WINE}" "${file1}" ${W_OPT_UNATTENDED:+/sfxlang:1027 /q /norestart}
+
+    w_override_dlls native mscoree
+
+    # Do not rely on temporary files. As a workaround, touch a file instead so that we know it's been installed for list-installed
+    w_try touch "${W_WINDIR_UNIX}/dotnet47.installed.workaround"
+
+    # See https://bugs.winehq.org/show_bug.cgi?id=47277#c9
+    case "${LANG}" in
+        C|en_US.UTF-8*) ;;
+        zh_CN*) w_warn "在尝试使用依赖 WPF 的应用程序时，你可能会遇到无限循环的问题。作为临时解决方法，请在运行应用程序时使用 LC_ALL=C。"
+        # Based on the bug, there may be other locales that are affected. But in the absence of a full list
+        # I don't think it's worth warning *every* non-en_US.UTF-8 user:
+        # *) w_warn "
+    esac
+
+    w_restore_winver
+}
+
+verify_dotnet47()
+{
+    w_dotnet_verify dotnet47
 }
 
 #----------------------------------------------------------------
