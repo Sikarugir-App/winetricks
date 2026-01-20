@@ -4833,12 +4833,7 @@ winetricks_set_wineprefix()
                 *) w_warn "You are using a 64-bit WINEPREFIX. Note that many verbs only install 32-bit versions of packages. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug." ;;
             esac
 
-            if [ "${_W_wow64_style}" = "new" ]; then
-                case ${LANG} in
-                    ru*) w_warn "Похоже, вы используете новый режим wow64 в Wine. Важно: он ЭКСПЕРИМЕНТАЛЬНЫЙ и пока поддерживается не полностью. Если будете сообщать о проблеме, обязательно упомяните об этом." ;;
-                    *) w_warn "You appear to be using Wine's new wow64 mode. Note that this is EXPERIMENTAL and not yet fully supported. If reporting an issue, be sure to mention this." ;;
-                esac
-            elif [ "${_W_wow64_style}" = "unknown" ]; then
+            if [ "${_W_wow64_style}" = "unknown" ]; then
                 case ${LANG} in
                     ru*) w_warn "Не удалось определить тип WoW64." ;;
                     *) w_warn "WoW64 type could not be detected." ;;
