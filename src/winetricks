@@ -12930,11 +12930,12 @@ load_vcrun2022()
 
             w_download https://aka.ms/vs/17/release/vc_redist.x64.exe cc0ff0eb1dc3f5188ae6300faef32bf5beeba4bdd6e8e445a9184072096b713b
 
-            # Also replace 64-bit msvcp140.dll & msvcp140_2.dll
+            # Also replace 64-bit msvcp140.dll, msvcp140_2.dll & vcruntime140_1.dll
             w_try_cabextract --directory="${W_TMP}/win64"  "${W_CACHE}"/"${W_PACKAGE}"/vc_redist.x64.exe -F 'a12'
             w_try_cabextract --directory="${W_TMP}/win64" "${W_TMP}/win64/a12"
             w_try mv -f "${W_TMP}/win64/msvcp140.dll_amd64" "${W_SYSTEM64_DLLS}/msvcp140.dll"
             w_try mv -f "${W_TMP}/win64/msvcp140_2.dll_amd64" "${W_SYSTEM64_DLLS}/msvcp140_2.dll"
+            w_try mv -f "${W_TMP}/win64/vcruntime140_1.dll_amd64" "${W_SYSTEM64_DLLS}/vcruntime140_1.dll"
 
             w_try_ms_installer "${WINE}" vc_redist.x64.exe ${W_OPT_UNATTENDED:+/q}
             ;;
