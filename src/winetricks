@@ -6910,7 +6910,7 @@ load_dxgl()
 {
     w_download https://github.com/dxgldotorg/dxgl/releases/download/0.5.23/DXGL-0.5.23-win32.exe 8c498198dc21355938053c222d3e52416f4aafc6cd3187a8ac14919b68b0a413
 
-    #w_call vcrun2022
+    #w_call vcrun2026
 
     w_try_cd "${W_CACHE}/${W_PACKAGE}"
 
@@ -14830,7 +14830,7 @@ load_eadesktop()
     w_call vcrun2010
     w_call vcrun2012
     w_call vcrun2013
-    w_call vcrun2022
+    w_call vcrun2026
 
     w_override_dlls disabled EACrashReporter.exe
 
@@ -14987,7 +14987,7 @@ load_galaxy()
     w_call vcrun2010
     w_call vcrun2012
     w_call vcrun2013
-    w_call vcrun2022
+    w_call vcrun2026
 
     w_override_dlls disabled GalaxyOverlay.exe
 
@@ -15078,7 +15078,7 @@ load_hoyoplay()
     if [ -n "${W_OPT_UNATTENDED}" ]; then
         w_try_7z "${W_PROGRAMS_UNIX}"/HoYoPlay "${W_CACHE}/${W_PACKAGE}"/${file1} -aoa
         w_try cp -f "${W_PROGRAMS_UNIX}"/HoYoPlay/*.*.*.*/launcher.exe "${W_PROGRAMS_UNIX}"/HoYoPlay/launcher.exe
-        w_call vcrun2022
+        w_call vcrun2026
     else
         w_try_cd "${W_CACHE}/${W_PACKAGE}"
         # Disabling launcher.exe to stop it launching after install is complete.
@@ -16290,7 +16290,7 @@ load_steam()
     w_call vcrun2010
     w_call vcrun2012
     w_call vcrun2013
-    w_call vcrun2022
+    w_call vcrun2026
 
     # Don't auto starting when refreshing the wineprefix
     "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v Steam /f || true
