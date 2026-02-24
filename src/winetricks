@@ -14594,7 +14594,18 @@ load_autohotkey()
 
 #----------------------------------------------------------------
 
-w_metadata battle_net apps \
+w_metadata battle_net dlls \
+    title="Stub" \
+    publisher="Blizzard" \
+    year="2005" \
+    media="download"
+
+load_battle_net()
+{
+    w_call battlenet
+}
+
+w_metadata battlenet apps \
     title="Battle.net" \
     publisher="Blizzard" \
     year="2005" \
@@ -14603,7 +14614,7 @@ w_metadata battle_net apps \
     installed_exe1="${W_PROGRAMS_X86_WIN}/Battle.net/Battle.net Launcher.exe" \
     homepage="https://www.battle.net"
 
-load_battle_net()
+load_battlenet()
 {
     if w_wine_version_in ,9.99; then
         w_die "${W_PACKAGE} requires wine version 10.0 (or newer)"
@@ -14611,6 +14622,7 @@ load_battle_net()
 
     w_download https://battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe
 
+    w_call corefonts
     w_override_dlls disabled BlizzardError.exe
 
     if w_wine_version_in ,10.0 ; then
