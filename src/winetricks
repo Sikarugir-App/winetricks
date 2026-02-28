@@ -14850,18 +14850,7 @@ load_eadesktop()
         w_die "${W_PACKAGE} requires wine version 9.0 (or newer)"
     fi
 
-    if w_workaround_wine_bug 32342 "EACefSubProcess crashes when updating or launching EALauncher (missing fonts)"; then
-        w_call corefonts
-    fi
-
-    if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
-        w_call d3dcompiler_47
-    fi
-
-    w_call vcrun2010
-    w_call vcrun2012
-    w_call vcrun2013
-    w_call vcrun2026
+    load_game_launcher_dependencies
 
     w_override_dlls disabled EACrashReporter.exe
 
