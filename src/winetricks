@@ -16291,16 +16291,8 @@ load_steam()
 
     w_try "${WINE}" SteamSetup.exe ${W_OPT_UNATTENDED:+ /S}
 
-    if w_workaround_wine_bug 32342 "Steamwebhelper.exe crashes when updating or launching (missing fonts)"; then
-        w_call corefonts
-    fi
-
     if w_workaround_wine_bug 44985 "Disabling libglesv2 to make Store and Library function correctly." 7.0,; then
         w_override_app_dlls steamwebhelper.exe disabled libglesv2
-    fi
-
-    if w_workaround_wine_bug 54948 "EALauncher fails to render."; then
-        w_call d3dcompiler_47
     fi
 
     w_override_dlls disabled EACrashReporter.exe
@@ -16311,11 +16303,7 @@ load_steam()
         w_override_dlls disabled vulkandriverquery64.exe
     fi
 
-    # Other common deps installed by Steam
-    w_call vcrun2010
-    w_call vcrun2012
-    w_call vcrun2013
-    w_call vcrun2026
+    load_game_launcher_dependencies
 
     # Don't auto starting when refreshing the wineprefix
     "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v Steam /f || true
