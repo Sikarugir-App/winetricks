@@ -16306,6 +16306,16 @@ load_steam()
 
     # Don't auto starting when refreshing the wineprefix
     "${WINE}" reg delete "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v Steam /f || true
+
+    w_warn "Force Steam update"
+    w_try_cd "${W_PROGRAMS_X86_UNIX}/Steam"
+    "${WINE}" Steam.exe -forcesteamupdate -exitsteam > /dev/null 2>&1
+
+    status=$?
+    case ${status} in
+        0|254) echo "Successfully installed ${W_PACKAGE}" ;;
+        *) w_die "Failed to install ${W_PACKAGE}" ;;
+    esac
 }
 
 w_metadata steam_remove_steam_cfg apps \
