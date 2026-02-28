@@ -12807,6 +12807,27 @@ load_vcrun2026()
 
 #----------------------------------------------------------------
 
+load_game_launcher_dependencies()
+{
+    export WINETRICKS_FORCE=1
+    w_call corefonts
+    w_call d3dcompiler_47
+    #w_call vcrun2003
+    w_call vcrun2005
+    w_call vcrun2008
+    w_call vcrun2010
+    w_call vcrun2012
+    w_call vcrun2013
+    w_call vcrun2015
+    w_call vcrun2017
+    w_call vcrun2019
+    w_call vcrun2022
+    w_call vcrun2026
+    unset WINETRICKS_FORCE
+}
+
+#----------------------------------------------------------------
+
 w_metadata vjrun20 dlls \
     title="MS Visual J# 2.0 SE libraries (requires dotnet20)" \
     publisher="Microsoft" \
