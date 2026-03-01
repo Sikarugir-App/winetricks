@@ -15012,13 +15012,7 @@ load_galaxy()
     # Find latest version from https://remote-config.gog.com/components/webinstaller?component_version=2.0.0
     w_download https://content-system.gog.com/open_link/download?path=/open/galaxy/client/setup_galaxy_2.0.89.99.exe
 
-    #w_call corefonts
-    #w_call dotnet48
-
-    w_call vcrun2010
-    w_call vcrun2012
-    w_call vcrun2013
-    w_call vcrun2026
+    load_game_launcher_dependencies
 
     w_override_dlls disabled GalaxyOverlay.exe
 
