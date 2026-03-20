@@ -14774,6 +14774,8 @@ w_metadata eadesktop apps \
 
 load_eadesktop()
 {
+    w_package_broken "https://github.com/Sikarugir-App/Sikarugir/issues/128"
+
     w_package_unsupported_win32
 
     if w_wine_version_in ,9.99 ; then
