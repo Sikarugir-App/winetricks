@@ -15049,6 +15049,11 @@ load_eadesktop()
     # NSIS installer
     w_try "${WINE}" "${file1}" EAX_LAUNCH_CLIENT=0 ${W_OPT_UNATTENDED:+ /S}
 
+    w_try rm -rf "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop/EA Desktop?"
+    w_try_cd "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop"
+    mv *.*.*.*/"EA Desktop" "${W_PROGRAMS_UNIX}/Electronic Arts/EA Desktop"
+    w_try rm -rf *.*.*.*
+
     w_warn "Stop Steam from installing EA app"
     "${WINE}" reg add "HKLM\\Software\\Electronic Arts\\EA Desktop" /v InstallSuccessful /t REG_SZ /d "true" /f
 }
