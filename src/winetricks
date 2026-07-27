@@ -15381,6 +15381,40 @@ load_steam()
 
     # Otherwise Steam Store and Library don't show
     w_call corefonts
+
+    if [ "$(uname -s)" = "Darwin" ]; then
+        w_call steam_update
+    fi
+}
+
+w_metadata steam_update apps \
+    title="Update Steam & install steamwebhelper wrapper"
+
+load_steam_update()
+{
+    w_download_to steam https://github.com/Sikarugir-app/winetricks-archive-mirror/releases/download/steam/steamwebhelper.exe
+
+    w_try_cd "${W_PROGRAMS_X86_UNIX}/Steam"
+    w_try rm -f "bin/cef/cef.win64/steamwebhelper_real.exe"
+    w_try rm -f "steam.cfg"
+
+    # A double update is currently required to get cef.win64
+    "${WINE}" Steam.exe -forcesteamupdate -exitsteam > /dev/null 2>&1
+    "${WINE}" Steam.exe -forcesteamupdate -exitsteam > /dev/null 2>&1
+
+    status=$?
+    case ${status} in
+        0|254) echo "Successfully installed ${W_PACKAGE}" ;;
+        *) w_die "Failed to install ${W_PACKAGE}" ;;
+    esac
+
+    w_try_cd "${W_PROGRAMS_X86_UNIX}/Steam/bin/cef/cef.win64"
+    w_try mv "steamwebhelper.exe" "steamwebhelper_real.exe"
+    w_try cp -f "${W_CACHE}/steam/steamwebhelper.exe" "steamwebhelper.exe"
+
+    cat > "${W_PROGRAMS_X86_UNIX}/Steam/steam.cfg" <<_EOF_
+BootStrapperInhibitAll=enable
+_EOF_
 }
 
 #----------------------------------------------------------------
