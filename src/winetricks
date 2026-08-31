@@ -14993,7 +14993,7 @@ load_eadesktop()
 {
     w_package_unsupported_win32
 
-    if [ "$(uname -s)" = "Darwin" ] && w_wine_version_in ,10.99; then
+    if w_wine_version_in ,10.99; then
         w_die "${W_PACKAGE} requires wine version 11.0 (or newer)"
     fi
 
