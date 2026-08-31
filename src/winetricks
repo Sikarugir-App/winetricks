@@ -12915,7 +12915,7 @@ w_metadata vcrun2026 dlls \
     publisher="Microsoft" \
     year="2026" \
     media="download" \
-    conflicts="vcrun2015 vcrun2017 vcrun2019 vcrun2022" \
+    conflicts="vcrun2017 vcrun2019 vcrun2022" \
     file1="vc_redist.x86.exe" \
     installed_file1="${W_SYSTEM32_DLLS_WIN}/vcruntime140.dll"
 
