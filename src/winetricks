@@ -13470,38 +13470,6 @@ load_xactengine3_7()
 
 #----------------------------------------------------------------
 
-w_metadata xinput dlls \
-    title="Microsoft XInput (Xbox controller support)" \
-    publisher="Microsoft" \
-    year="2010" \
-    media="download" \
-    file1="../directx9/directx_feb2010_redist.exe" \
-    installed_file1="${W_SYSTEM32_DLLS_WIN}/xinput1_1.dll"
-
-load_xinput()
-{
-    helper_directx_Jun2010
-
-    w_try_cabextract -d "${W_TMP}" -L -F '*_xinput_*x86*' "${W_CACHE}"/directx9/${DIRECTX_NAME}
-    for x in "${W_TMP}"/*.cab; do
-        w_try_cabextract -d "${W_SYSTEM32_DLLS}" -L -F 'xinput*.dll' "${x}"
-    done
-
-    if test "${W_ARCH}" = "win64"; then
-        w_try_cabextract -d "${W_TMP}" -L -F '*_xinput_*x64*' "${W_CACHE}"/directx9/${DIRECTX_NAME}
-
-        for x in "${W_TMP}"/*x64.cab; do
-            w_try_cabextract -d "${W_SYSTEM64_DLLS}" -L -F 'xinput*.dll' "${x}"
-        done
-    fi
-    w_override_dlls native xinput1_1
-    w_override_dlls native xinput1_2
-    w_override_dlls native xinput1_3
-    w_override_dlls native xinput9_1_0
-}
-
-#----------------------------------------------------------------
-
 w_metadata xliveless dlls \
     title="Games for Windows Live (gfw / gfwl) - xlive.dll mock, single player only" \
     publisher="ThirteenAG" \
