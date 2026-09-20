@@ -754,6 +754,7 @@ w_try()
     status=$?
 
     en_ms_5="exit status ${status} - user selected 'Cancel'"
+    en_ms_102="exit status ${status} - normal'"
     en_ms_105="exit status ${status} - normal, user selected 'restart now'"
     en_ms_194="exit status ${status} - normal, user selected 'restart later'"
     en_ms_236="exit status ${status} - newer version detected"
@@ -770,6 +771,7 @@ w_try()
         case ${status} in
             # Nonfatal
             0) ;;
+            102) echo "${en_ms_102}" ;;
             105) echo "${en_ms_105}" ;;
             194) echo "${en_ms_194}" ;;
             236) echo "${en_ms_236}" ;;
