@@ -4883,6 +4883,14 @@ winetricks_set_wineprefix()
         %*) w_info "$(winetricks_print_wineprefix_info)" ; w_die "${WINE} cmd.exe /c echo '%AppData%' returned unexpanded string '${W_PROGRAMS_WIN}' ... this can be caused by a corrupt wineprefix (\`wineboot -u\` may help), by an old wine, or by not owning ${WINEPREFIX}" ;;
     esac
 
+    W_LOCALAPPDATA_WIN="$(w_expand_env LocalAppData)"
+    W_LOCALAPPDATA_UNIX="$(w_pathconv -u "${W_LOCALAPPDATA_WIN}")"
+
+    case "${W_LOCALAPPDATA_WIN}" in
+        "") w_info "$(winetricks_print_wineprefix_info)" ; w_die "${WINE} cmd.exe /c echo '%LocalAppData%' returned empty string, error message \"$(cat "${W_TMP_EARLY}"/early_wine.err.txt)\" ";;
+        %*) w_info "$(winetricks_print_wineprefix_info)" ; w_die "${WINE} cmd.exe /c echo '%LocalAppData%' returned unexpanded string '${W_PROGRAMS_WIN}' ... this can be caused by a corrupt wineprefix (\`wineboot -u\` may help), by an old wine, or by not owning ${WINEPREFIX}" ;;
+    esac
+
     # Kludge: use Temp instead of temp to avoid \t expansion in w_try
     # but use temp in Unix path because that's what Wine creates, and having both temp and Temp
     # causes confusion (e.g. makes vc2005trial fail)
