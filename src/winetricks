@@ -16589,6 +16589,33 @@ load_vlc()
 
 #----------------------------------------------------------------
 
+w_metadata warframe apps \
+    title="Warframe" \
+    publisher="Digital Extremes" \
+    year="2013" \
+    media="download" \
+    file1="Warframe.msi" \
+    installed_exe1="${W_LOCALAPPDATA_WIN}/Warframe/Downloaded/Public/Tools/Launcher.exe"
+    homepage="https://www.warframe.com"
+
+load_warframe()
+{
+    if w_wine_version_in ,10.99; then
+        w_die "${title} requires wine version 11.0 (or newer)"
+    fi
+
+    w_download https://content.warframe.com/dl/Warframe.msi
+    w_try_cd "${W_CACHE}/${W_PACKAGE}"
+    w_try "${WINE}" msiexec /i Warframe.msi ${W_OPT_UNATTENDED:+/qb}
+
+    # Stop Launcher.exe from starting after install
+    w_wineserver -k
+
+    w_warn "${W_PACKAGE} installed to ${installed_exe1}"
+}
+
+#----------------------------------------------------------------
+
 w_metadata winamp apps \
     title="Winamp" \
     publisher="Radionomy (AOL (Nullsoft))" \
